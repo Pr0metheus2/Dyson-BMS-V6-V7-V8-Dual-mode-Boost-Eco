@@ -1,7 +1,7 @@
 ...Under construction...
   
 # FW-Dyson-BMS
-### An (Unofficial) Firmware Upgrade for Dyson V6/V7 Vacuum Battery Management System (BMS)
+### An (Unofficial) Firmware Upgrade for Dyson V6/V7 & V8 Vacuum Battery Management System (BMS)
 ![Github Header Image](https://user-images.githubusercontent.com/46428760/168486653-8b8b696d-0bcb-4679-95c9-0377f26ec008.jpg)
 
 ------
