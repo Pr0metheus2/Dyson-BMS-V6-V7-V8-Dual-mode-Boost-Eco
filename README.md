@@ -7,6 +7,7 @@
 This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [here](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes described below.
 
 **Compatible Models V/V7:** SV03, SV04, SV05, SV06, SV09, HH11
+
 **Compatible Models V8:** SV10, SV25, [SV37](https://github.com/tinfever/FW-Dyson-BMS/issues/80)
 
 ## Revolutionary features:
