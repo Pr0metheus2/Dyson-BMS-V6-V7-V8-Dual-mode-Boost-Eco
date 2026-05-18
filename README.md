@@ -10,9 +10,20 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 **Compatible Models V8:** SV10, SV25, [SV37](https://github.com/tinfever/FW-Dyson-BMS/issues/80)
 
 ## Revolutionary features:
-* **Persistent Mode:** Boost (4150mV) and Eco (4000mV) modes now persist across power cycles and are stored directly in EEPROM. Toggled via **Trigger + Charger connect**.
--   Cell balance LED indicator
--   State of charge LED indicator
+- 	**Persistent Mode:** Boost (4,15V) and Eco (4,00V) modes persist across power cycles, stored in memory with visual identification of selected mode
+-	Resolved the excessive draw on cell 1 when left on charger. If left on charger only the PIC is put to sleep after full charge. Result is an even current draw on all cells, approx 1,2mA. The ISL and the PIC will fully go to sleep if not left on the charger, drawing less than 3µA on cell 1 and less than 1µA on the other cells. Previously when left on the charger the ISL and PIC would go to sleep while wake up signal would be high on the ISL. Cell 1 would draw about 400µA more than the other cells which would lead to an imbalance over time.
+-	Cell voltage offsets in eeprom to account for inaccurate internal voltage measurement of the ISL (separate instruction for this in Documents folder)
+-	Determine and factor in internal resistance of the cells to better utilise high currents (momentary voltage is allowed to drop below 3V while discharged)
+-	Limit number of charge-wait-cycles (safety)
+-	Introduced slow (10s charge, 70s wait) charging for cell voltage below 3V
+-	Refuse charging if one cell is below 2,0V (unsafe, will generate 20 blink error)
+-	Breathing blue LED effect during charging
+-   Battery level indicator
+-   Improved/Slightly changed the cell balance indicator: 0mV – 50mV: 1 blink. 50mV – 100mV: 2 binks etc. This way you have one blink from the start. Not to have a blink and one appears later may be confusing.
+-	Improved discharge near the lower charge limit. The cells will discharge more, closer to the discharge limit of mincell = 3000mV. When full discharged is flagged. It resets after 3x3 blinks. This is useful when using full power mode near the discharge limit. After the battery cuts out in full power mode you can wait the 3x3 blinks and continue with low power for a while.
+-	Increased short circuit discharge voltage threshold by one step (otherwise it would trip with fresh high current cells)
+-	Increased overcurrent charge time-out from 2,5ms to 5ms
+-	Improved temperature consideration for charging. The battery will now wait to be in the temperature range of 15°C to 40°C before it starts charging. If the temperature would for some reason go out of the range 12°C to 50°C during charging it will display and save an error code but continue charging when the temperature is within the initial limit again.
 -   Doesn't brick itself!
 -   Doesn't generate e-waste and try to take your money when your cells go out of balance!
 
