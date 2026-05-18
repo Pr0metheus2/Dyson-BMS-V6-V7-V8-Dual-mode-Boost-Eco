@@ -1,0 +1,110 @@
+/**
+  Generated Pin Manager File
+
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+    pin_manager.c
+
+  Summary:
+    This is the Pin Manager file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+  Description:
+    This header file provides implementations for pin APIs for all pins selected in the GUI.
+    Generation Information :
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
+        Device            :  PIC16LF1847
+        Driver Version    :  2.11
+    The generated drivers are tested against the following:
+        Compiler          :  XC8 2.31 and above
+        MPLAB             :  MPLAB X 5.45
+
+    Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
+*/
+
+/*
+    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+    
+    Subject to your compliance with these terms, you may use Microchip software and any 
+    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
+    license terms applicable to your use of third party software (including open source software) that 
+    may accompany Microchip software.
+    
+    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
+    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
+    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+    FOR A PARTICULAR PURPOSE.
+    
+    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
+    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
+    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
+    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
+    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+    SOFTWARE.
+*/
+
+#include "pin_manager.h"
+
+
+
+
+
+void PIN_MANAGER_Initialize(void)
+{
+    /**
+    LATx registers
+    */
+    LATA = 0b11000000;
+    LATB = 0b00001001;
+    
+    // Explicitly set LEDs off to avoid startup ghosting
+    // Based on Set_LED_RBBB logic, all LEDs OFF is:
+    // LATA7=1, LATA6=1, LATB0=1, LATB3=1
+    LATA |= 0b10000000; // Red off
+    LATA |= 0b01000000; // Blue 1 off
+    LATB |= 0b00000001; // Blue 2 off
+    LATB |= 0b00001000; // Blue 3 off
+
+    /**
+    TRISx registers
+    */
+    TRISA = 0b00111111;
+    TRISB = 0b11110110;
+
+    /**
+    ANSELx registers
+    */
+    ANSELA = 0b00011111;
+    ANSELB = 0b11110110;
+
+    /**
+    WPUx registers
+    */
+    WPUA = 0b00000000;
+    WPUB = 0b00000000;
+    OPTION_REGbits.nWPUEN = 1;
+
+
+    /**
+    APFCONx registers
+    */
+    APFCON0 = 0b00001110;
+    APFCON1 = 0b00000000;
+
+
+
+
+   
+    
+}
+  
+void PIN_MANAGER_IOC(void)
+{   
+}
+
+/**
+ End of File
+*/

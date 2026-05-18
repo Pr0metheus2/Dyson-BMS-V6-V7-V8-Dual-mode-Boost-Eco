@@ -1,13 +1,22 @@
-firmware/.generated_files/
-firmware/build/
-firmware/dist/
-firmware/nbproject/Makefile-*
-firmware/nbproject/Package-*
-firmware/nbproject/private/
-firmware/.ca/
-firmware/.vscode/
+firmware/V6_V7/.generated_files/
+firmware/V6_V7/build/
+firmware/V6_V7/dist/
+firmware/V6_V7/nbproject/Makefile-*
+firmware/V6_V7/nbproject/Package-*
+firmware/V6_V7/nbproject/private/
+firmware/V6_V7/.ca/
+firmware/V6_V7/.vscode/
+firmware/V8/.generated_files/
+firmware/V8/build/
+firmware/V8/dist/
+firmware/V8/nbproject/Makefile-*
+firmware/V8/nbproject/Package-*
+firmware/V8/nbproject/private/
+firmware/V8/.ca/
+firmware/V8/.vscode/
 EEPROM-parsing-tool/eeprom dumps/
 *.bkp
+*.bak
 EEPROM-parsing-tool/.vscode/
 
 firmware/disassembly/
