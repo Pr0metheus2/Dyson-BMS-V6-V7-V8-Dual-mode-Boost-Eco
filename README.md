@@ -1,34 +1,14 @@
 ...Under construction...
   
-# FW-Dyson-BMS
+# # Boost | Eco permanent version (4.15V | 4.00V)
 ### An (Unofficial) Firmware Upgrade for Dyson V6/V7 & V8 Vacuum Battery Management System (BMS)
-![Github Header Image](https://user-images.githubusercontent.com/46428760/168486653-8b8b696d-0bcb-4679-95c9-0377f26ec008.jpg)
 
 ------
-
-**Dyson vacuum batteries are designed to fail.**
-
-Here's why:
-
-1.  Series battery cells in a battery pack inevitably become imbalanced. This is extremely common and why cell balancing was invented.
-2.  Dyson uses a very nice ISL94208 battery management IC that includes cell balancing. It only requires 6 resistors that cost $0.00371 each, or 2.2 cents in total for six. [^1]
-3.  Dyson did not install these resistors. (They even designed the V6 board, PCB 61462, to support them. They just left them out.)
-4.  Rather than letting an unbalanced pack naturally result in lower usable capacity, when the cells go moderately (300mV) out of balance (by design, see step 3) Dyson programmed the battery to stop working...permanently. It will give you the 32 red blinks of death and will not charge or discharge again. It could not be fixed. Until now. [^2]
-
-FW-Dyson-BMS is a replacement firmware for the microcontroller inside Dyson V6/V7 vacuum batteries. By using this firmware, your battery pack will not become unusable if the cells become imbalanced, you will just have reduced battery capacity as usual. It will also allow you to replace the battery cells to repair your battery, rather than be forced to replace it.
-
-Demonstration, disassembly, and programming video:
-
-https://www.youtube.com/watch?v=dwyA5rBjncg
-
-<sub><sup>(This project was formerly named "FU-Dyson-BMS" but was renamed to be more polite.)
+This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [here](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes described below.
 
 ## Revolutionary features:
 -   Cell balance LED indicator
 -   State of charge LED indicator
--   Robust fault handling and logging
--   Total runtime tracking
--   Can be run in debug mode for near-real-time diagnostics
 -   Doesn't brick itself!
 -   Doesn't generate e-waste and try to take your money when your cells go out of balance!
 
@@ -57,13 +37,26 @@ Note: the model numbers are kind of weird. There are three different ways to ide
     
 Some models like SV04 contain different versions of the battery PCB. Many of these PCB versions are extremely similar and I have no idea why Dyson seems to have made at least 5 different versions. I recommend you use the PCB part number for reference if possible, or the model number printed on the battery otherwise. I still use the V6, V7 names in some places since that is what most people are familiar with, and I keep changing my mind as to which identification method is better.
 
-**Probably not compatible:**
-(Although it’d be interesting to see PCB photos of them to be sure)
--   V10 vacuums
--   V11 vacuums
--   Anything newer
+**Not compatible models:**
+-   Anything newer than V8
+-   V10, V11 and consequent models
 
 If you aren’t sure if your battery is compatible, please submit a Github issue with the highest quality photos possible of the battery PCB and provide the advertised model number (V6, V7, etc) and printed model number (SV09, SV11, etc) and I’ll try to tell you if it will work.
+
+**Dyson vacuum batteries are designed to fail.**
+
+Here's why:
+
+1.  Series battery cells in a battery pack inevitably become imbalanced. This is extremely common and why cell balancing was invented.
+2.  Dyson uses a very nice ISL94208 battery management IC that includes cell balancing. It only requires 6 resistors that cost $0.00371 each, or 2.2 cents in total for six. [^1]
+3.  Dyson did not install these resistors. (They even designed the V6 board, PCB 61462, to support them. They just left them out.)
+4.  Rather than letting an unbalanced pack naturally result in lower usable capacity, when the cells go moderately (300mV) out of balance (by design, see step 3) Dyson programmed the battery to stop working...permanently. It will give you the 32 red blinks of death and will not charge or discharge again. It could not be fixed. Until now. [^2]
+
+FW-Dyson-BMS is a replacement firmware for the microcontroller inside Dyson V6/V7 and V8 vacuum batteries. By using this firmware, your battery pack will not become unusable if the cells become imbalanced, you will just have reduced battery capacity as usual. It will also allow you to replace the battery cells to repair your battery, rather than be forced to replace it.
+
+![Github Header Image](https://user-images.githubusercontent.com/46428760/168486653-8b8b696d-0bcb-4679-95c9-0377f26ec008.jpg)
+Demonstration, disassembly, and programming video:
+https://www.youtube.com/watch?v=dwyA5rBjncg
 
 ## How to install it:
 
