@@ -1,17 +1,17 @@
-...Under construction...
-  
 # # Boost | Eco permanent version (4.15V | 4.00V)
 ### An (Unofficial) Firmware Upgrade for Dyson V6/V7 & V8 Vacuum Battery Management System (BMS)
+
+<img src="./hardware-info/images/Dyson_battery_pencil.png" width="400" />
 
 ------
 This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [bluespresso](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes described below.
 
-**Compatible Models V/V7:** SV03, SV04, SV05, SV06, SV09, HH11
+**🔋 Compatible Models V6/V7:** SV03, SV04, SV05, SV06, SV09, HH11
 
-**Compatible Models V8:** SV10, SV25, [SV37](https://github.com/tinfever/FW-Dyson-BMS/issues/80)
+**🔋 Compatible Models V8:** SV10, SV25, [SV37](https://github.com/tinfever/FW-Dyson-BMS/issues/80)
 
 ## Revolutionary features:
-- 	**Persistent Mode:** Boost (4,15V) and Eco (4,00V) modes persist across power cycles, stored in memory with visual identification of selected mode
+- 	**Persistent Mode:** Boost (4,15V) and Eco (4,00V) modes persist across power cycles, stored in memory with visual identification of selected mode. Boost mode is a standard version, Eco mode if always-on-the-charger scenario.
 -	Resolved the excessive draw on cell 1 when left on charger. If left on charger only the PIC is put to sleep after full charge. Result is an even current draw on all cells, approx 1,2mA. The ISL and the PIC will fully go to sleep if not left on the charger, drawing less than 3µA on cell 1 and less than 1µA on the other cells. Previously when left on the charger the ISL and PIC would go to sleep while wake up signal would be high on the ISL. Cell 1 would draw about 400µA more than the other cells which would lead to an imbalance over time.
 -	Cell voltage offsets in eeprom to account for inaccurate internal voltage measurement of the ISL (separate instruction for this in Documents folder)
 -	Determine and factor in internal resistance of the cells to better utilise high currents (momentary voltage is allowed to drop below 3V while discharged)
@@ -35,16 +35,20 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 -   You don’t like feeling like a cash cow being squeezed for all you’re worth.
     
 ## Compatible vacuums/batteries:
--   Dyson V7 - Model SV11 - PCB 279857 - Compatible + Tested
+-	Dyson V7 - Model SV11 - PCB 279857 - Compatible + Tested
 <img src="./hardware-info/images/V7 SV11 - PCB 279857.jpg" width="400" />
 
-- Dyson V7 - Model ?? - PCB 228499 - Reported Working by NemoLee
-
--   Dyson V6 - Model SV04/SV09 - PCB 61462 - Compatible + Tested
+-	Dyson V6 - Model SV04/SV09 - PCB 61462 - Compatible + Tested
 <img src="./hardware-info/images/V6 SV04,SV09 - PCB 61462.jpg" width="400" />
 
--   Dyson V6 - Model SV04 - PCB 188002 - Compatible + Tested
+-	Dyson V6 - Model SV04 - PCB 188002 - Compatible + Tested
 <img src="./hardware-info/images/V6 SV04 - PCB 188002, Repaired.jpg" width="400" />
+
+-	Dyson V7 - Model HH11 - PCB 228499 - Compatible + Tested
+<img src="./hardware-info/images/HH11 - PCB 228499/PCB 228499.jpg" width="400" />
+
+-	Dyson V8 - Model SV37 - PCB ? - Compatible + Tested by [twaymouth](https://github.com/tinfever/FW-Dyson-BMS/issues/80)
+<img src="./hardware-info/images/SV37/577002333-ed216a2c-ef40-4580-a824-d57f7bf8a40d.jpg" width="400" />
 
 Note: the model numbers are kind of weird. There are three different ways to identify/categorize your vacuum:
 1.  The advertised version number (V6, V7, etc)
@@ -54,8 +58,7 @@ Note: the model numbers are kind of weird. There are three different ways to ide
 Some models like SV04 contain different versions of the battery PCB. Many of these PCB versions are extremely similar and I have no idea why Dyson seems to have made at least 5 different versions. I recommend you use the PCB part number for reference if possible, or the model number printed on the battery otherwise. I still use the V6, V7 names in some places since that is what most people are familiar with, and I keep changing my mind as to which identification method is better.
 
 **Not compatible models:**
--   Anything newer than V8
--   V10, V11 and consequent models
+-   Anything newer than V8 (V10, V11 and consequent models)
 
 If you aren’t sure if your battery is compatible, please submit a Github issue with the highest quality photos possible of the battery PCB and provide the advertised model number (V6, V7, etc) and printed model number (SV09, SV11, etc) and I’ll try to tell you if it will work.
 
@@ -68,7 +71,7 @@ Here's why:
 3.  Dyson did not install these resistors. (They even designed the V6 board, PCB 61462, to support them. They just left them out.)
 4.  Rather than letting an unbalanced pack naturally result in lower usable capacity, when the cells go moderately (300mV) out of balance (by design, see step 3) Dyson programmed the battery to stop working...permanently. It will give you the 32 red blinks of death and will not charge or discharge again. It could not be fixed. Until now. [^2]
 
-FW-Dyson-BMS is a replacement firmware for the microcontroller inside Dyson V6/V7 and V8 vacuum batteries. By using this firmware, your battery pack will not become unusable if the cells become imbalanced, you will just have reduced battery capacity as usual. It will also allow you to replace the battery cells to repair your battery, rather than be forced to replace it.
+FW-Dyson-BMS is a replacement firmware for the microcontroller inside Dyson V6/V7 and V8 vacuum batteries. By using original firmware, your battery pack will not become unusable if the cells become imbalanced, you will just have reduced battery capacity as usual. It will also allow you to replace the battery cells to repair your battery, rather than be forced to replace it.
 
 ![Github Header Image](https://user-images.githubusercontent.com/46428760/168486653-8b8b696d-0bcb-4679-95c9-0377f26ec008.jpg)
 Demonstration, disassembly, and programming video:
@@ -76,7 +79,7 @@ https://www.youtube.com/watch?v=dwyA5rBjncg
 
 ## How to install it:
 
-Warning: The firmware flash process is irreversible. It is not possible to restore the factory firmware.
+Warning: The firmware flash process is irreversible. It is not possible to restore the factory firmware due to read lock.
 
 Summary:
 
@@ -86,12 +89,13 @@ Summary:
 3.  Remove conformal coating over programming connection points (if applicable)
 4.  Connect PICkit to computer and, if you using a PICkit 3 or clone, install the [PICkit 3 Programmer App and Scripting Tool v3.10](https://ww1.microchip.com/downloads/en/DeviceDoc/PICkit3%20Programmer%20Application%20v3.10.zip). (https://www.microchip.com/en-us/tools-resources/archives/mplab-ecosystem)
 5.  Connect PICkit to BMS board as shown below:  
-    (Note: I now recommend not connecting the VDD wire at all. The ISL94208 chip seems keen to fail with an externally supply voltage. I'd still suggest waking up the battery pack as describe in step 6 to power the board up for programming. One user has suggested (https://github.com/tinfever/FW-Dyson-BMS/issues/24) even this may be unnecessary though.)  
-    <img src="./hardware-info/images/PICkit Wiring Diagram_crop.jpg" width="720" />
-6.  Wake up battery pack by pressing button and placing magnet on reed switch (if using V7 vacuum).
+    (Note: I now recommend not connecting the VDD wire at all. The ISL94208 chip seems keen to fail with an externally supply voltage. ~~I'd still suggest waking up the battery pack as describe in step 6 to power the board up for programming.~~ One user has suggested (https://github.com/tinfever/FW-Dyson-BMS/issues/24) even this may be unnecessary to wake up battery.)  
+    <img src="./hardware-info/images/PICkit Wiring Diagram_updated_crop.png" width="720" />
+6.  ~~Wake up battery pack by pressing button and placing magnet on reed switch (if using V7 & V8 vacuum)~~. Not necessary.
 7.  While maintaining tension on wires to BMS board, make sure PICkit can see the PIC16LF1847 microcontroller, then import and write the hex file from the latest GitHub release.  
 <br/><br/>
-For more details, see video linked at the top (https://www.youtube.com/watch?v=dwyA5rBjncg).  
+For more details, see video linked at the top (https://www.youtube.com/watch?v=dwyA5rBjncg).
+If you need to buy a programmer, search for PICKIT3.5 Programmer on Ali.
 <br/><br/>
 
 <sub><sup>Disclaimer: Lithium-ion batteries can be dangerous and must be respected. Proper cell balancing may reduce this danger which is why only trained professionals who implement cell balancing according to the manufacturer recommended best practices should work on them...wait...well that doesn't include Dyson either so I guess we're on our own. According to the internet, they can spontaneously catch fire, burn your house down, drain your retirement fund, and run away with your wife. Consider yourself warned, and please don't sue me if something goes wrong because I assume no liability and provide no warranty. See section 15 and 16 of the COPYING file for more details.
@@ -116,65 +120,85 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
   
   
   
-  
-
 ## What do the LEDs mean?
 
-  
-
 **While pulling trigger:**
--   Red-Green-Blue flashes - Looks fancy and indicates you’re running the custom firmware
--   Solid Blue - The vacuum is on / Power output is enabled
--   3x Blue flashes - Battery low (Low voltage cutoff reached).
-	-   Output disabled until charger connected or pack goes to sleep and forgets
+-   V6/V7 
+	- Solid Blue 🔵 - The vacuum is on / Power output is enabled
+	- Flashing Blue - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
+-   V8
+	- Flashing Blue#1 🌀⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵🌀⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵🌀 (according to voltage level) - The vacuum is on / Power output is enabled
+	- 3x3 Blue#1 flashes - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
    
 **When you release the trigger:**
--   Green flashes - (Rough) Remaining Battery Capacity
-	- Indicates (roughly) the remaining battery capacity on a scale of 1-6 flashes, with 6 being completely full and 1 being effectively empty.
-	-   1 flash = 3.0V < Min cell < 3.2V
-	-   2 flashes = 3.2V < Min cell < 3.4V
-	-   3 flashes = 3.4V < Min cell < 3.6V
-	-   4 flashes = 3.6V < Min cell < 3.8V
-	-   5 flashes = 3.8V < Min cell < 4.0V
-	-   6 flashes = 4.0V < Min cell < 4.2V
-	-   (Min cell means the voltage of whatever battery cell has the lowest voltage)
-	-   (Why 1-6 flashes? Well if 0 flashes was an option, you couldn't tell if the battery meter function was working at all or not)
-	- Due to the current draw of the vacuum and the ESR of the cells, 3 flashes could probably be considered almost dead.
+-   V6/V7 
+	- Green flashes (1-3) 🟢 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
+		- Capacity means the voltage of whatever battery cell has the lowest voltage
+-   V8 
+	- Solid Blue (1-3 blue) 🔵⚫⚫, 🔵🔵⚫, 🔵🔵🔵 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
+		- Capacity means the voltage of whatever battery cell has the lowest voltage
 
 **When you connect the charger:**
+-   V6/V7 
+	- Blue (Boost) 🔵 or Green (Eco) 🟢 flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
+		-  	Indicates how out of balance your battery pack is. Min. 1 flash (if 0mV-50mV)
+		-   Represents the voltage difference between your highest and lowest voltage cell.
+		-   Each flash = 50mV
+		-   Example: The highest voltage cell in your pack is 3.95V. The lowest voltage cell is 3.62V. 3.95V - 3.62V = 330mV difference. 330mv / 50mv per flash = 7 flashes (6.6 rounded to 7)
+	- Breathing Blue light 🌀 - charging is active
+	- Solid white ⚪ - Charging pause/wait
+		- The highest voltage cell reached 4.15V(Boost)/4.00V(Eco), charging disabled
+		- It will wait for 70 seconds to let the battery cells recover/stabilize a bit and then resume charging (max 10 times)
+		- Once it takes less than 10 seconds of charging to reach the max cell voltage, charging will be marked as complete
+	- Solid green 🟢 - Charging is complete/IDLE. After the battery is fully charged, IDLE state is activated for 60 seconds, then battery will enter sleep state (LED off)
+		-   Will sleep after 30 seconds of no activity
 
--   Yellow flashes - Cell Balance Indicator
-	-  Indicates how out of balance your battery pack is.
-	-   Represents the voltage difference between your highest and lowest voltage cell.
-	-   Each flash = 50mV
-	-   Example: The highest voltage cell in your pack is 3.95V. The lowest voltage cell is 3.62V. 3.95V - 3.62V = 330mV difference. 330mv / 50mv per flash = 7 flashes (6.6 rounded to 7)
--   Solid blue - Charging is active
--   Solid white - Charging pause/wait
-	- The highest voltage cell reached 4.2V so charging was disabled
-	-   It will wait for 70 seconds to let the battery cells recover a bit and then resume charging.
--   Solid green - Charging is complete/Idle
-	-   Once it takes less than 10 seconds of charging (blue LED) to reach the max cell voltage of 4.2V, charging will be marked as complete
-	-   Will sleep after 30 seconds of no activity
+-	V8 
+	- Cell imbalance indicator - Red + Blue#2 + Blue#3 🔴🔵🔵 (Boost mode) or Red + Blue#2 🔴🔵⚫ (Eco mode)
+		-  	Indicates how out of balance your battery pack is.
+		-   Represents the voltage difference between your highest and lowest voltage cell.
+		-   Each flash = 50mV
+		-   Example: The highest voltage cell in your pack is 3.95V. The lowest voltage cell is 3.62V. 3.95V - 3.62V = 330mV difference. 330mv / 50mv per flash = 7 flashes (6.6 rounded to 7)
+	- Breathing Blue light 🌀⚫⚫, 🔵🌀⚫, 🔵🔵🌀 - charging is active - only last active blue is breathing, other blues are solid (charge level dependent)
+	- Blue#1 + Blue#3 🔵⚫🔵 - Charging pause/wait
+		- The highest voltage cell reached 4.15V(Boost)/4.00V(Eco), charging disabled
+		- It will wait for 70 seconds to let the battery cells recover/stabilize a bit and then resume charging (max 10 times)
+		- Once it takes less than 10 seconds of charging to reach the max cell voltage, charging will be marked as complete
+	- All three Blue 🔵🔵🔵- Charging is complete/IDLE. After the battery is fully charged, IDLE state is activated for 15 seconds, then battery will enter sleep state (LED off)
     
 **When you disconnect the charger:**
--   Yellow flashes - Cell Balance Indicator
-	-   (See entry under "When you connect the charger")
+-   V6/V7 
+	- Blue (Boost) 🔵 or Green (Eco) 🟢 flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
+		-   (See entry under "When you connect the charger")
+-   V8 
+	- Blue (Boost) 🔴🔵🔵 or Green (Eco) 🔴🔵⚫ flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
+		-   (See entry under "When you connect the charger")
+  	- Solid Blue (1-3 blue) 🔵⚫⚫, 🔵🔵⚫, 🔵🔵🔵 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] 
 
 **When you hold down the trigger and connect the charger:**
 
--   White flashes - Firmware version
-	-   One white flash = version 1. Four white flashes = version 4, etc
-	-   Charging will resume as normal after this is shown.
+-   V6/V7 
+	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
+		- Boost [Blue] (4.15V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Blue pulses 🔵
+		- Eco [Green] (4.00V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Green pulses 🟢
+		- Charging will resume as normal after this is shown (see section "When you disconnect the charger").
+-   V8
+	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
+		- Boost (4.15V) mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2+Blue#3) 500ms pulse flash 🔴🔵🔵
+		- Eco (4.00V) mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2) 500ms pulse flash 🔴🔵⚫
     
-
-  
-
 **At any time:**
--   Solid green - Battery pack is idle. The output isn't enabled and it isn't charging.
-	-   Will sleep after 30 seconds of no activity
--   Red flashes - Fault indicator/Error code
-	-   How you should handle errors:  Make note of how many flashes are in your error code, make sure the charger is removed and trigger is released, and then wait 60 seconds for the error code to clear. Then you can try again if you want.
-    
+-   V6/V7 
+	-   Solid green 🟢	- Battery pack is idle. The output isn't enabled and it isn't charging.
+		-   Will sleep after 60 seconds of no activity
+	- 	Solid yellow 🟡	- waiting for temperature normalisation on charging start.
+	-   Red flashes 🔴- Fault indicator/Error code
+		-   How you should handle errors:  Make note of how many flashes are in your error code, make sure the charger is removed and trigger is released, and then wait 60 seconds for the error code to clear. Then you can try again if you want.
+-   V8
+	-	Solid blue#2 ⚫🔵⚫ - waiting for temperature normalisation on charging start.
+	-	Blue#1 + Blue#3 🔵⚫🔵 - Charging pause/wait, see section "When you connect the charger"
+	-   Red flashes 🔴⚫⚫	- Fault indicator/Error code
+		-   How you should handle errors:  Make note of how many flashes are in your error code, make sure the charger is removed and trigger is released, and then wait 60 seconds for the error code to clear. Then you can try again if you want.
 
 
 ## What do the error codes mean?
@@ -211,20 +235,15 @@ However, the pack will go to sleep if it remains in an error state for 60 second
 <img src="./firmware-info/Firmware State Flow Chart - FINAL.drawio.png"/>
 	
 **Known Issues:**
-- The BMS will go to sleep and put the ISL94208 to sleep after charging is complete. This may create a small but noticeable current draw on the cell connected to VBACK on the ISL94208. This means over the period of months, I think the cell connected to VBACK may slowly go out of balance compared to the other cells. This is not damage in any fashion, but since we can only charge the entire pack in series, any discharge of a specific cell will inevitably cause an imbalance. An imbalance can be fixed by manually charging the imbalanced cell back up to match the others. As a workaround for this issue, I'd recommend not leaving the battery connected to the charger 24/7. Again, no damage will occur, but one of the cells may be discharged slightly and need to be rebalanced. I'll fix this as soon as I can, no ETA though.
-- The code is bad. Like really bad. Like, "Oh god, I've created a monster" bad. Like, "I think I may have created something so unnecessarily complicated that I'm not sure I can ever fully understand it" bad. Honestly, the LED codes should probably be broken out in to their own state machine and some serious thought should be put in to whether it's the best idea for each state to handle the transitions to every other state. Also, interrupts should probably have been used...somewhere. However, it works and there are no bugs I'm currently aware of. I'm also afraid to mess with it because there is a good chance I'll break some obscure state transition logic I've either purposely or accidentally patched over with some other piece of logic.
 - On one of the BMS boards, there is a circuit that appears to provide the ability to enable the output with a series 33 Ohm resistor. I have no idea what this function could be for and it isn’t on the other BMS boards, so I haven’t implemented it.
-- If you connect the charger, the battery becomes fully charged, the pack goes to sleep, and then you remove the charger, the cell balance indicator won't show. This is because the microcontroller is completely turned off until the WKUP signal goes low (by removing the charger) and then high again (by pulling the trigger or attaching the charger).
 - Cell balancing is not implemented. I know this is ironic, but because the cell balancing resistors aren't installed and Dyson used 1K resistors for the VCELL# connections, even if you shorted out the connections where the cell balancing resistors would go, which most people aren't going to do (and you'd have to cut some very fine traces on the V7 BMS PCBs), the cell balancing would be extremely slow through the 1K resistors. You'd also have to either add #define setting or figure out some way for the firmware to detect if cell balance resistors are installed and then remember it, because you'd need the pack to stay awake on the charger while balancing if applicable, but go to sleep on the charger otherwise. If the pack thinks it is balancing but there are no balance connections, it would stay awake forever. Also I'm burnt out on this project and have worked on my vacuum enough for one lifetime.
 - If you use the battery hard enough for it to get over 50C, and then connect it to the charger, it will immediately trip a charge over-temp error. Since the error will have occurred while it was on the charger, the error will not clear until you remove the battery from the charger, and then wait for the error code to clear and the pack to cool below 50C. Then you can reconnect it to the charger.
-- There is no under-voltage charging cutoff. If the ISL94208 and PIC turn on and you connect the charger, it will charge (unless the max cell is over 4.2V of course). In theory this isn't great because it means a low voltage cell, like one at 2.3V, might end up being charged at full current (~700mA).
-
 
 ## FAQ
 
 **Q: Will this work with my vacuum XYZ?**
 	
-A: If it is a Dyson V6 or V7, probably. Otherwise, probably not. The best way to tell would be to disassemble your battery and see if you have a PCB number that matches one of the tested models. If it matches, it will very likely work. If it doesn't match, submit a Github issue with a high-res photo of the board and I'll try to tell you. If it has a PIC16LF1847 microcontroller with a ISL94208 battery management front-end, there is a good chance it will work and if there is a version like that but that doesn't currently work, I'm open to adding support.
+A: If it is a Dyson V6, V7 or V8, probably. Otherwise, probably not. The best way to tell would be to disassemble your battery and see if you have a PCB number that matches one of the tested models. If it matches, it will very likely work. If it doesn't match, submit a Github issue with a high-res photo of the board and I'll try to tell you. If it has a PIC16LF1847 microcontroller with a ISL94208 battery management front-end, there is a good chance it will work and if there is a version like that but that doesn't currently work, I'm open to adding support.
 
 **Q: The batteries aren't designed to fail. They just had to keep costs down.**
 	
@@ -243,7 +262,7 @@ A: That's not a question. However, if we accept the line of thinking that Dyson 
 - High-res image and PDF versions of the firmware state flow chart are located in the [firmware-info folder](./firmware-info). Draw.io original files are also included.
 - As mentioned earlier, there is a script called [EEPROM-parsing-tool.py](./EEPROM-parsing-tool) that you can use to convert a raw EEPROM dump from this firmware in to something human readable. It will show the firmware version, total battery runtime in seconds (since last firmware flash), and any faults logged along with a timestamp of the fault.
 - [EEVBlog Forum Thread for Discussion](https://www.eevblog.com/forum/projects/fu-dyson-bms-an-(unofficial)-firmware-upgrade-for-dyson-v6v7-vacuum-bms/)
-- MALE20 on the EEVBlog Forum pointed out a tool on Thingiverse (Author: billsy) that might make opening the battery packs much easier. https://www.thingiverse.com/thing:3112717/files I haven't tested it but it might be worth trying.
+- MALE20 on the EEVBlog Forum pointed out a tool on Thingiverse (Author: billsy) that might make opening the battery packs much easier. https://www.thingiverse.com/thing:3112717/files . I have tested this tool, but no success.
 - dr-mark-roberts reverse engineered the V6 (PCB 188002) and V8 (PCB 180207) BMS boards long before I did. Since I never did the V8, there is some additional information there: https://github.com/dr-mark-roberts/open-dyson-battery
 	
 ## Credit
