@@ -4,7 +4,7 @@
 ### An (Unofficial) Firmware Upgrade for Dyson V6/V7 & V8 Vacuum Battery Management System (BMS)
 
 ------
-This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [here](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes described below.
+This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [bluespresso](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes described below.
 
 **Compatible Models V/V7:** SV03, SV04, SV05, SV06, SV09, HH11
 
