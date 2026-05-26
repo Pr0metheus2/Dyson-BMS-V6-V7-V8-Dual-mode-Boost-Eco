@@ -4,7 +4,7 @@
 <img src="./hardware-info/images/Dyson_battery_pencil.png" width="400" />
 
 ------
-This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [bluespresso](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes described below.
+This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [bluespresso](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes.
 
 **🔋 Compatible Models V6/V7:** SV03, SV04, SV05, SV06, SV09, HH11
 
