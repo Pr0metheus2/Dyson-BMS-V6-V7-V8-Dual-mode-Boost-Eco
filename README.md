@@ -181,7 +181,7 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
 		- Boost [Blue] (4.15V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Blue pulses 🔵
 		- Eco [Green] (4.00V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Green pulses 🟢
-		- Charging will resume as normal after this is shown (see section "When you disconnect the charger").
+		- Charging will resume as normal after this is shown (see section "When you connect the charger").
 -   V8
 	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
 		- Boost (4.15V) mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2+Blue#3) 500ms pulse flash 🔴🔵🔵
