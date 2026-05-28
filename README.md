@@ -28,7 +28,7 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 -   Doesn't brick itself!
 -   Doesn't generate e-waste and try to take your money when your cells go out of balance!
 
-## 🔋 Battery LED Status & Diagnostic Guide
+## 🔋 Battery LED Status & Diagnostic Guide for V6/V7
 
 ### 🟢 Operational & Charging Status
 
