@@ -190,7 +190,6 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 **At any time:**
 -   V6/V7 
 	-   Solid green 🟢	- Battery pack is idle. The output isn't enabled and it isn't charging.
-		-   Will sleep after 60 seconds of no activity
 	- 	Solid yellow 🟡	- waiting for temperature normalisation on charging start.
 	-   Red flashes 🔴- Fault indicator/Error code
 		-   How you should handle errors:  Make note of how many flashes are in your error code, make sure the charger is removed and trigger is released, and then wait 60 seconds for the error code to clear. Then you can try again if you want.
