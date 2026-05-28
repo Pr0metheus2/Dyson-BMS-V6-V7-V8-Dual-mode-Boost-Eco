@@ -125,10 +125,10 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 **While pulling trigger:**
 -   V6/V7 
 	- Solid Blue 🔵 - The vacuum is on / Power output is enabled
-	- Flashing Blue - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
+	- Flashing Blue 🌀 - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
 -   V8
 	- Flashing Blue#1 🌀⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵🌀⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵🌀 (according to voltage level) - The vacuum is on / Power output is enabled
-	- 3x3 Blue#1 flashes - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
+	- 3x3 Blue#1 fast flashes 🌀⚫⚫ - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
    
 **When you release the trigger:**
 -   V6/V7 
