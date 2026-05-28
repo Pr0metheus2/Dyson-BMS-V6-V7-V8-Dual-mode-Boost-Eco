@@ -267,9 +267,10 @@ A: That's not a question. However, if we accept the line of thinking that Dyson 
 	
 ## Credit
 - DavidAlfa from EEVBlog Forum (Created I2C Library)
-- dvd4me from EEVBlog Forum (Helped with reverse engineering and provided continued support)
+- dvd4me from EEVBlog Forum (Helped with tinfever engineering and provided continued support)
+- tinfever for his initial work in this project
+- bluespresso for his consequent V6/V7 and V8 initial support
 -----
-Now, if you’ll excuse me, I’m going to finally vacuum my apartment.
 
 **In memory of BMS boards SV11 #1, SV09 #1, SV04 #1, and SV04 #3 who gave their lives for this project. Their sacrifice will not be in vain.**
 
