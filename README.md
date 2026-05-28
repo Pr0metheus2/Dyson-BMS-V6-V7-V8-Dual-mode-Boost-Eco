@@ -28,6 +28,47 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 -   Doesn't brick itself!
 -   Doesn't generate e-waste and try to take your money when your cells go out of balance!
 
+## 🔋 Battery LED Status & Diagnostic Guide
+
+### 🟢 Operational & Charging Status
+
+| LED Pattern | State / Meaning | Description |
+| :--- | :--- | :--- |
+| 🔵 **Solid Blue** | **Vacuum is ON** | Normal discharging operation. |
+| 🌀 **Breathing Blue** | **Battery is Charging** | Power connected, cells filling normally. |
+| 💠 **Flashing Blue (Fast)** | **Battery Low** | Voltage dropped below threshold; charge immediately. |
+| 🟢 **Solid Green** | **Charging Complete** | Battery is fully topped up; charging has stopped. |
+
+### ⚠️ Diagnostics & Safety Holds
+
+| LED Pattern | State / Meaning | Action / Description |
+| :--- | :--- | :--- |
+| ⚪ **Solid White** | **Charging Pause** | Wait state; system is performing cell stabilization. |
+| 🟡 **Solid Yellow** | **Temperature Lock** | Over/under temperature. Waiting for normalization before charging resumes. |
+| 🔴 **Flashing Red** | **Fault / Error Code** | Critical system error. Check error code table, cell voltages or BMS hardware. |
+
+### 📊 Capacity & Calibration Sub-Modes
+
+#### Battery Capacity *(Displayed immediately after trigger release)*
+| LED Pattern | Capacity Range |
+| :--- | :--- |
+| ❇️ **1 Flash** | `0% - 33%` Remaining Capacity |
+| ❇️ **2 Flashes** | `33% - 66%` Remaining Capacity |
+| ❇️ **3 Flashes** | `66% - 100%` Remaining Capacity |
+
+#### Cell Imbalance Monitor *(Triggered on charger connect / disconnect)*
+| LED Pattern | Measurement Delta |
+| :--- | :--- |
+| 💠 / ❇️ **Flashing Blue or Green** | **Each individual flash = 50mV cell deviation** |
+
+### ⚙️ Trigger Hold Mode Selection
+> 💡 **How to switch modes:** Hold down the main vacuum trigger *while* plugging in the charger cable to toggle between profiles.
+
+* ⚪×10 **Rapid White Flashes** + 🔵×2 **Blue Flashes** $\rightarrow$ **STANDARD (Boost) MODE** `(4.15V)`
+* ⚪×10 **Rapid White Flashes** + 🟢×2 **Green Flashes** $\rightarrow$ **ECO MODE** `(4.00V)`
+ 
+---
+
 ## Why you would want this:
 -   You want to vacuum your apartment but your cells became slightly out of balance because you left the vacuum off the charger for too long and now your vacuum doesn’t work (ask me how I know)
 -   You want to replace a bad cell in your battery pack
