@@ -125,14 +125,14 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 **While pulling trigger:**
 -   V6/V7 
 	- Solid Blue 🔵 - The vacuum is on / Power output is enabled
-	- Flashing Blue 🌀 - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
+	- Flashing Blue 💠 - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
 -   V8
-	- Flashing Blue#1 🌀⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵🌀⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵🌀 (according to voltage level) - The vacuum is on / Power output is enabled
-	- 3x3 Blue#1 fast flashes 🌀⚫⚫ - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
+	- Flashing Blue#1 💠⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵💠⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵💠 (according to voltage level) - The vacuum is on / Power output is enabled
+	- 3x3 Blue#1 fast flashes 💠⚫⚫ - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
    
 **When you release the trigger:**
 -   V6/V7 
-	- Green flashes (1-3) 🟢 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
+	- Green flashes (1-3) ❇️ - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
 		- Capacity means the voltage of whatever battery cell has the lowest voltage
 -   V8 
 	- Solid Blue (1-3 blue) 🔵⚫⚫, 🔵🔵⚫, 🔵🔵🔵 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
@@ -140,7 +140,7 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 
 **When you connect the charger:**
 -   V6/V7 
-	- Blue (Boost) 🔵 or Green (Eco) 🟢 flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
+	- Blue 💠 or Green ❇️ flash - Cell imbalance indicator (depends on mode selected [Boost/Eco])
 		-  	Indicates how out of balance your battery pack is. Min. 1 flash (if 0mV-50mV)
 		-   Represents the voltage difference between your highest and lowest voltage cell.
 		-   Each flash = 50mV
@@ -154,7 +154,7 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 		-   Will sleep after 30 seconds of no activity
 
 -	V8 
-	- Cell imbalance indicator - Red + Blue#2 + Blue#3 🔴🔵🔵 (Boost mode) or Red + Blue#2 🔴🔵⚫ (Eco mode)
+	- Red + Blue#2 + Blue#3 🔴🔵🔵 (Boost mode) or Red + Blue#2 🔴🔵⚫ (Eco mode) - Cell imbalance indicator (depends on mode selected [Boost/Eco])
 		-  	Indicates how out of balance your battery pack is.
 		-   Represents the voltage difference between your highest and lowest voltage cell.
 		-   Each flash = 50mV
@@ -168,7 +168,7 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
     
 **When you disconnect the charger:**
 -   V6/V7 
-	- Blue (Boost) 🔵 or Green (Eco) 🟢 flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
+	- Blue 💠 or Green ❇️ flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
 		-   (See entry under "When you connect the charger")
 -   V8 
 	- Blue (Boost) 🔴🔵🔵 or Green (Eco) 🔴🔵⚫ flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
@@ -179,13 +179,13 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 
 -   V6/V7 
 	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
-		- Boost [Blue] (4.15V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Blue pulses 🔵
-		- Eco [Green] (4.00V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Green pulses 🟢
+		- Boost mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Blue pulses 🔵
+		- Eco mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Green pulses 🟢
 		- Charging will resume as normal after this is shown (see section "When you connect the charger").
 -   V8
 	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
-		- Boost (4.15V) mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2+Blue#3) 500ms pulse flash 🔴🔵🔵
-		- Eco (4.00V) mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2) 500ms pulse flash 🔴🔵⚫
+		- Boost mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2+Blue#3) 500ms pulse flash 🔴🔵🔵
+		- Eco mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2) 500ms pulse flash 🔴🔵⚫
     
 **At any time:**
 -   V6/V7 
