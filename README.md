@@ -122,20 +122,20 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
   
 ## What do the LEDs mean?
 
-**While pulling trigger:**
+**While pressing trigger:**
 -   V6/V7 
 	- Solid Blue 🔵 - The vacuum is on / Power output is enabled
 	- Flashing Blue 💠 - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
 -   V8
-	- Flashing Blue#1 💠⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵💠⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵💠 (according to voltage level) - The vacuum is on / Power output is enabled
+	- Flashing Blue#1 💠⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵💠⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵💠 (battery voltage level) - The vacuum is on / Power output is enabled
 	- 3x3 Blue#1 fast flashes 💠⚫⚫ - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
    
 **When you release the trigger:**
 -   V6/V7 
-	- Green flashes (1-3) ❇️ - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
+	- Green flashes (1-3) ❇️ - Remaining Battery Capacity; 1 flash (0%-33%), 2 flashes (33%-66%), 3 flashes (66%-100%); battery charge level (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
 		- Capacity means the voltage of whatever battery cell has the lowest voltage
 -   V8 
-	- Solid Blue (1-3 blue) 🔵⚫⚫, 🔵🔵⚫, 🔵🔵🔵 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
+	- Solid Blue (1-3 blue) 🔵⚫⚫ (0%-33%), 🔵🔵⚫ (33%-66%), 🔵🔵🔵 (66%-100%) of remaining battery capacity (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
 		- Capacity means the voltage of whatever battery cell has the lowest voltage
 
 **When you connect the charger:**
@@ -173,7 +173,7 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 -   V8 
 	- Blue (Boost) 🔴🔵🔵 or Green (Eco) 🔴🔵⚫ flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
 		-   (See entry under "When you connect the charger")
-  	- Solid Blue (1-3 blue) 🔵⚫⚫, 🔵🔵⚫, 🔵🔵🔵 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] 
+  	- Solid Blue (1-3 blue) 🔵⚫⚫ (0%-33%), 🔵🔵⚫ (33%-66%), 🔵🔵🔵 (66%-100%) of remaining battery capacity (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]) 
 
 **When you hold down the trigger and connect the charger:**
 
