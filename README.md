@@ -28,45 +28,12 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 -   Doesn't brick itself!
 -   Doesn't generate e-waste and try to take your money when your cells go out of balance!
 
-## 🔋 Battery LED Status & Diagnostic Guide for V6/V7
-
-### 🟢 Operational & Charging Status
-
-| LED Pattern | State / Meaning | Description |
-| :--- | :--- | :--- |
-| 🔵 **Solid Blue** | **Vacuum is ON** | Normal discharging operation. |
-| 🌀 **Breathing Blue** | **Battery is Charging** | Power connected, cells filling normally. |
-| 💠 **Flashing Blue (Fast)** | **Battery Low** | Voltage dropped below threshold; charge immediately. |
-| 🟢 **Solid Green** | **Charging Complete** | Battery is fully topped up; charging has stopped. |
-
-### ⚠️ Diagnostics & Safety Holds
-
-| LED Pattern | State / Meaning | Action / Description |
-| :--- | :--- | :--- |
-| ⚪ **Solid White** | **Charging Pause** | Wait state; system is performing cell stabilization. |
-| 🟡 **Solid Yellow** | **Temperature Lock** | Over/under temperature. Waiting for normalization before charging resumes. |
-| 🔴 **Flashing Red** | **Fault / Error Code** | Critical system error. Check error code table, cell voltages or BMS hardware. |
-
-### 📊 Capacity & Calibration Sub-Modes
-
-#### Battery Capacity *(Displayed immediately after trigger release)*
-| LED Pattern | Capacity Range |
-| :--- | :--- |
-| ❇️ **1 Flash** | `0% - 33%` Remaining Capacity |
-| ❇️ **2 Flashes** | `33% - 66%` Remaining Capacity |
-| ❇️ **3 Flashes** | `66% - 100%` Remaining Capacity |
-
-#### Cell Imbalance Monitor *(Triggered on charger connect / disconnect)*
-| LED Pattern | Measurement Delta |
-| :--- | :--- |
-| 💠 / ❇️ **Flashing Blue or Green** | **Each individual flash = 50mV cell deviation** |
-
-### ⚙️ Trigger Hold Mode Selection
-> 💡 **How to switch modes:** Hold down the main vacuum trigger *while* plugging in the charger cable to toggle between profiles.
-
-* ⚪×10 **Rapid White Flashes** + 🔵×2 **Blue Flashes** $\rightarrow$ **STANDARD (Boost) MODE** `(4.15V)`
-* ⚪×10 **Rapid White Flashes** + 🟢×2 **Green Flashes** $\rightarrow$ **ECO MODE** `(4.00V)`
- 
+## 🔋 Battery sticker for V6/V7 battery
+- Accessible in [documents/Battery_sticker](https://github.com/Pr0metheus2/Dyson-BMS-V6-V7-V8-Dual-mode-Boost-Eco/tree/9d27dbbd231bbaf2f64f4269289b554ac80f5bac/documents/Battery_sticker) folder
+- For printing use a PDF version, do not scale
+- If you have swapped old cells with higher capacity ones, edit appropriate .svg file, search for "2100 mAh" and change to your desired value. Then open in viewer, export to PDF and print
+- V8 version in progress..
+<img src="./documents/Battery_sticker/Battery_sticker_59x59_SV03_SV09_en.svg" width="600" />
 ---
 
 ## Why you would want this:
