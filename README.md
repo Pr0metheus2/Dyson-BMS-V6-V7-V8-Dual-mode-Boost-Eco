@@ -11,7 +11,7 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 **🔋 Compatible Models V8:** SV10, SV25, [SV37](https://github.com/tinfever/FW-Dyson-BMS/issues/80)
 
 ## Revolutionary features:
-- 	**Persistent Mode:** Boost (4,15V) and Eco (4,00V) modes persist across power cycles, stored in memory with visual identification of selected mode. Boost mode is a standard version, Eco mode if always-on-the-charger scenario.
+- 	**Persistent Mode:** Standard [Boost] (4,15V) and Eco (4,00V) modes persist across power cycles, stored in memory with visual identification of selected mode. Boost mode is a standard version, Eco mode if always-on-the-charger scenario.
 -	Resolved the excessive draw on cell 1 when left on charger. If left on charger only the PIC is put to sleep after full charge. Result is an even current draw on all cells, approx 1,2mA. The ISL and the PIC will fully go to sleep if not left on the charger, drawing less than 3µA on cell 1 and less than 1µA on the other cells. Previously when left on the charger the ISL and PIC would go to sleep while wake up signal would be high on the ISL. Cell 1 would draw about 400µA more than the other cells which would lead to an imbalance over time.
 -	Cell voltage offsets in eeprom to account for inaccurate internal voltage measurement of the ISL (separate instruction for this in Documents folder)
 -	Determine and factor in internal resistance of the cells to better utilise high currents (momentary voltage is allowed to drop below 3V while discharged)
