@@ -1,4 +1,4 @@
-# # Boost | Eco permanent version (4.15V | 4.00V)
+# # Standard [Boost] | Eco permanent version (4.15V | 4.00V)
 ### An (Unofficial) Firmware Upgrade for Dyson V6/V7 & V8 Vacuum Battery Management System (BMS)
 
 <img src="./hardware-info/images/Dyson_battery_pencil.png" width="400" />
