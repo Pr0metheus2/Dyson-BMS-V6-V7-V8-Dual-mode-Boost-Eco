@@ -4,7 +4,7 @@
 <img src="./hardware-info/images/Dyson_battery_pencil.png" width="400" />
 
 ------
-This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [bluespresso](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes described below.
+This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) and V8 support from [bluespresso](https://github.com/tinfever/FW-Dyson-BMS/issues/76). I have made an additional improvements and fixes.
 
 **🔋 Compatible Models V6/V7:** SV03, SV04, SV05, SV06, SV09, HH11
 
@@ -27,6 +27,47 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 -	Improved temperature consideration for charging. The battery will now wait to be in the temperature range of 15°C to 40°C before it starts charging. If the temperature would for some reason go out of the range 12°C to 50°C during charging it will display and save an error code but continue charging when the temperature is within the initial limit again.
 -   Doesn't brick itself!
 -   Doesn't generate e-waste and try to take your money when your cells go out of balance!
+
+## 🔋 Battery LED Status & Diagnostic Guide for V6/V7
+
+### 🟢 Operational & Charging Status
+
+| LED Pattern | State / Meaning | Description |
+| :--- | :--- | :--- |
+| 🔵 **Solid Blue** | **Vacuum is ON** | Normal discharging operation. |
+| 🌀 **Breathing Blue** | **Battery is Charging** | Power connected, cells filling normally. |
+| 💠 **Flashing Blue (Fast)** | **Battery Low** | Voltage dropped below threshold; charge immediately. |
+| 🟢 **Solid Green** | **Charging Complete** | Battery is fully topped up; charging has stopped. |
+
+### ⚠️ Diagnostics & Safety Holds
+
+| LED Pattern | State / Meaning | Action / Description |
+| :--- | :--- | :--- |
+| ⚪ **Solid White** | **Charging Pause** | Wait state; system is performing cell stabilization. |
+| 🟡 **Solid Yellow** | **Temperature Lock** | Over/under temperature. Waiting for normalization before charging resumes. |
+| 🔴 **Flashing Red** | **Fault / Error Code** | Critical system error. Check error code table, cell voltages or BMS hardware. |
+
+### 📊 Capacity & Calibration Sub-Modes
+
+#### Battery Capacity *(Displayed immediately after trigger release)*
+| LED Pattern | Capacity Range |
+| :--- | :--- |
+| ❇️ **1 Flash** | `0% - 33%` Remaining Capacity |
+| ❇️ **2 Flashes** | `33% - 66%` Remaining Capacity |
+| ❇️ **3 Flashes** | `66% - 100%` Remaining Capacity |
+
+#### Cell Imbalance Monitor *(Triggered on charger connect / disconnect)*
+| LED Pattern | Measurement Delta |
+| :--- | :--- |
+| 💠 / ❇️ **Flashing Blue or Green** | **Each individual flash = 50mV cell deviation** |
+
+### ⚙️ Trigger Hold Mode Selection
+> 💡 **How to switch modes:** Hold down the main vacuum trigger *while* plugging in the charger cable to toggle between profiles.
+
+* ⚪×10 **Rapid White Flashes** + 🔵×2 **Blue Flashes** $\rightarrow$ **STANDARD (Boost) MODE** `(4.15V)`
+* ⚪×10 **Rapid White Flashes** + 🟢×2 **Green Flashes** $\rightarrow$ **ECO MODE** `(4.00V)`
+ 
+---
 
 ## Why you would want this:
 -   You want to vacuum your apartment but your cells became slightly out of balance because you left the vacuum off the charger for too long and now your vacuum doesn’t work (ask me how I know)
@@ -122,25 +163,25 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
   
 ## What do the LEDs mean?
 
-**While pulling trigger:**
+**While pressing trigger:**
 -   V6/V7 
 	- Solid Blue 🔵 - The vacuum is on / Power output is enabled
-	- Flashing Blue - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
+	- Flashing Blue 💠 - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
 -   V8
-	- Flashing Blue#1 🌀⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵🌀⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵🌀 (according to voltage level) - The vacuum is on / Power output is enabled
-	- 3x3 Blue#1 flashes - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
+	- Flashing Blue#1 💠⚫⚫, or Solid Blue#1 + Flashing Blue#2 🔵💠⚫, or Solid Blue#1 + Solid Blue#2 + Flashing Blue#3 🔵🔵💠 (battery voltage level) - The vacuum is on / Power output is enabled
+	- 3x3 Blue#1 fast flashes 💠⚫⚫ - Battery low (Low voltage cutoff reached) - Output disabled until charger connected or pack goes to sleep and forgets
    
 **When you release the trigger:**
 -   V6/V7 
-	- Green flashes (1-3) 🟢 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
+	- Green flashes (1-3) ❇️ - Remaining Battery Capacity; 1 flash (0%-33%), 2 flashes (33%-66%), 3 flashes (66%-100%); battery charge level (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
 		- Capacity means the voltage of whatever battery cell has the lowest voltage
 -   V8 
-	- Solid Blue (1-3 blue) 🔵⚫⚫, 🔵🔵⚫, 🔵🔵🔵 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
+	- Solid Blue (1-3 blue) 🔵⚫⚫ (0%-33%), 🔵🔵⚫ (33%-66%), 🔵🔵🔵 (66%-100%) of remaining battery capacity (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]).
 		- Capacity means the voltage of whatever battery cell has the lowest voltage
 
 **When you connect the charger:**
 -   V6/V7 
-	- Blue (Boost) 🔵 or Green (Eco) 🟢 flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
+	- Blue 💠 or Green ❇️ flash - Cell imbalance indicator (depends on mode selected [Boost/Eco])
 		-  	Indicates how out of balance your battery pack is. Min. 1 flash (if 0mV-50mV)
 		-   Represents the voltage difference between your highest and lowest voltage cell.
 		-   Each flash = 50mV
@@ -154,7 +195,7 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
 		-   Will sleep after 30 seconds of no activity
 
 -	V8 
-	- Cell imbalance indicator - Red + Blue#2 + Blue#3 🔴🔵🔵 (Boost mode) or Red + Blue#2 🔴🔵⚫ (Eco mode)
+	- Red + Blue#2 + Blue#3 🔴🔵🔵 (Boost mode) or Red + Blue#2 🔴🔵⚫ (Eco mode) - Cell imbalance indicator (depends on mode selected [Boost/Eco])
 		-  	Indicates how out of balance your battery pack is.
 		-   Represents the voltage difference between your highest and lowest voltage cell.
 		-   Each flash = 50mV
@@ -168,29 +209,28 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
     
 **When you disconnect the charger:**
 -   V6/V7 
-	- Blue (Boost) 🔵 or Green (Eco) 🟢 flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
+	- Blue 💠 or Green ❇️ flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
 		-   (See entry under "When you connect the charger")
 -   V8 
 	- Blue (Boost) 🔴🔵🔵 or Green (Eco) 🔴🔵⚫ flashes - Cell imbalance indicator (depend on mode selected [Boost/Eco])
 		-   (See entry under "When you connect the charger")
-  	- Solid Blue (1-3 blue) 🔵⚫⚫, 🔵🔵⚫, 🔵🔵🔵 - Remaining Battery Capacity 0%-33%, 33%-66% and 66%-100% of battery charge (dynamic value, depends on Boost [~3,00V-4,15V] 
+  	- Solid Blue (1-3 blue) 🔵⚫⚫ (0%-33%), 🔵🔵⚫ (33%-66%), 🔵🔵🔵 (66%-100%) of remaining battery capacity (dynamic value, depends on Boost [~3,00V-4,15V] / Eco [~3,00V-4,00V]) 
 
 **When you hold down the trigger and connect the charger:**
 
 -   V6/V7 
 	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
-		- Boost [Blue] (4.15V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Blue pulses 🔵
-		- Eco [Green] (4.00V) mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Green pulses 🟢
-		- Charging will resume as normal after this is shown (see section "When you disconnect the charger").
+		- Boost mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Blue pulses 🔵
+		- Eco mode: 10 rapid white flashes ⚪ → 250ms pause → Two 500ms Green pulses 🟢
+		- Charging will resume as normal after this is shown (see section "When you connect the charger").
 -   V8
 	- Persistent Mode switch: Boost (4,15V) or Eco (4,00V)
-		- Boost (4.15V) mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2+Blue#3) 500ms pulse flash 🔴🔵🔵
-		- Eco (4.00V) mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2) 500ms pulse flash 🔴🔵⚫
+		- Boost mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2+Blue#3) 500ms pulse flash 🔴🔵🔵
+		- Eco mode: 10 rapid Purple + Blue flashes 🟣🔵🔵 → 250ms pause → One (Red+Blue#2) 500ms pulse flash 🔴🔵⚫
     
 **At any time:**
 -   V6/V7 
 	-   Solid green 🟢	- Battery pack is idle. The output isn't enabled and it isn't charging.
-		-   Will sleep after 60 seconds of no activity
 	- 	Solid yellow 🟡	- waiting for temperature normalisation on charging start.
 	-   Red flashes 🔴- Fault indicator/Error code
 		-   How you should handle errors:  Make note of how many flashes are in your error code, make sure the charger is removed and trigger is released, and then wait 60 seconds for the error code to clear. Then you can try again if you want.
@@ -267,9 +307,10 @@ A: That's not a question. However, if we accept the line of thinking that Dyson 
 	
 ## Credit
 - DavidAlfa from EEVBlog Forum (Created I2C Library)
-- dvd4me from EEVBlog Forum (Helped with reverse engineering and provided continued support)
+- dvd4me from EEVBlog Forum (Helped with tinfever engineering and provided continued support)
+- tinfever for his initial work in this project
+- bluespresso for his consequent V6/V7 and V8 initial support
 -----
-Now, if you’ll excuse me, I’m going to finally vacuum my apartment.
 
 **In memory of BMS boards SV11 #1, SV09 #1, SV04 #1, and SV04 #3 who gave their lives for this project. Their sacrifice will not be in vain.**
 
