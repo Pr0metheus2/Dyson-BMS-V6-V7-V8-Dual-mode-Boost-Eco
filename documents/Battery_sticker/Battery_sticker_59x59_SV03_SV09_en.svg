@@ -27,13 +27,13 @@
      inkscape:document-units="mm"
      inkscape:zoom="3.3"
      inkscape:cx="114.24242"
-     inkscape:cy="112.27273"
+     inkscape:cy="112.57576"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg41"
+     inkscape:current-layer="g32"
      showgrid="false" /><defs
      id="defs41" /><!-- Background & Border --><rect
      x="4.9675121"
@@ -101,7 +101,7 @@
        id="text4"
        style="font-size:17.6389px;fill:#000000;fill-opacity:1">SOLID BLUE</text><text
        x="213.19286"
-       y="26.574451"
+       y="25.772684"
        font-size="12.5px"
        fill="#aaaaaa"
        id="text5"
@@ -192,7 +192,7 @@
        id="text13"
        style="font-size:17.6389px;fill:#000000;fill-opacity:1">SOLID WHITE</text><text
        x="213.50949"
-       y="24"
+       y="23.198233"
        font-size="12.5px"
        fill="#aaaaaa"
        id="text14"
@@ -210,7 +210,7 @@
        id="text15"
        style="font-size:17.6389px;fill:#000000;fill-opacity:1">SOLID YELLOW</text><text
        x="214.26741"
-       y="48"
+       y="47.198231"
        font-size="12.5px"
        fill="#aaaaaa"
        id="text16"
@@ -343,7 +343,11 @@
        font-size="12px"
        fill="#ffffff"
        id="text28"
-       style="font-size:15.875px;fill:#00a8ff;fill-opacity:1">Cell Balance in STANDARD mode (1 Flash = 50mV)</text><text
+       style="font-size:15.875px;fill:#00a8ff;fill-opacity:1">Cell Balance <tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan2">in </tspan>STANDARD mode <tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan7">(1 Flash = 50mV)</tspan></text><text
        x="336.16663"
        y="26"
        font-size="12px"
@@ -369,7 +373,11 @@
        id="text31"
        style="font-size:15.875px;fill:#4cd137;fill-opacity:1"><tspan
          id="tspan59"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.875px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;-inkscape-font-specification:'Helvetica Neue, Helvetica, Arial, sans-serif'">Cell Balance in ECO mode (1 Flash = 50mV)</tspan></text><text
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.875px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;-inkscape-font-specification:'Helvetica Neue, Helvetica, Arial, sans-serif'">Cell Balance <tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan3">in </tspan>ECO mode <tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan8">(1 Flash = 50mV)</tspan></tspan></text><text
        x="336.16663"
        y="48"
        font-size="12px"

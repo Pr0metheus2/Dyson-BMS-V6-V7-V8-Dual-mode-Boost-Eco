@@ -26,10 +26,10 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="3.3"
-     inkscape:cx="114.39394"
-     inkscape:cy="111.66667"
+     inkscape:cx="114.54545"
+     inkscape:cy="111.9697"
      inkscape:window-width="1920"
-     inkscape:window-height="1017"
+     inkscape:window-height="1137"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -48,12 +48,12 @@
      style="fill:#f3f3f3;fill-opacity:1;stroke:#000000;stroke-width:0.935021;stroke-dasharray:none;stroke-opacity:1" /><text
      xml:space="preserve"
      style="color:#ffffff;font-size:14.1111px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke-width:1.23671"
-     x="13.378617"
+     x="95.657288"
      y="580.70947"
      id="text63-2"><tspan
        sodipodi:role="line"
        style="font-size:14.1111px;stroke-width:1.23671"
-       x="13.378617"
+       x="95.657288"
        y="580.70947"
        id="tspan65-6">Pre chybové kódy a viac informácií o firmvéri naskenujte QR kód.</tspan></text><!-- Header / Branding --><g
      id="g66"
@@ -98,7 +98,7 @@
        id="text4"
        style="font-size:17.6389px;fill:#000000;fill-opacity:1">SVIETI MODRÁ</text><text
        x="213.19286"
-       y="26.574451"
+       y="24.605238"
        font-size="12.5px"
        fill="#aaaaaa"
        id="text5"
@@ -124,7 +124,7 @@
        id="text6"
        style="font-size:17.6389px;fill:#000000;fill-opacity:1">PULZUJE MODRÁ</text><text
        x="213.20839"
-       y="48"
+       y="47.04203"
        font-size="12.5px"
        fill="#aaaaaa"
        id="text7"
@@ -336,11 +336,15 @@
        id="text27"
        style="font-size:17.6389px;fill:#000000;fill-opacity:1">BLIKÁ MODRÁ</text><text
        x="166.75003"
-       y="26"
+       y="25.198233"
        font-size="12px"
        fill="#ffffff"
        id="text28"
-       style="font-size:15.875px;fill:#00a8ff;fill-opacity:1">Vyváženie článkov v ŠTANDARD režime (1 blik = 50mV)</text><text
+       style="font-size:15.875px;fill:#00a8ff;fill-opacity:1">Vyváženie článkov <tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan2">v </tspan>ŠTANDARD režime <tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan7">(1 blik = 50mV)</tspan></text><text
        x="336.16663"
        y="26"
        font-size="12px"
@@ -360,13 +364,17 @@
        id="text30"
        style="font-size:17.6389px;fill:#000000;fill-opacity:1">BLIKÁ ZELENÁ</text><text
        x="166.75003"
-       y="48"
+       y="46.396461"
        font-size="12px"
        fill="#4cd137"
        id="text31"
-       style="font-size:17.6389px;fill:#4cd137;fill-opacity:1"><tspan
+       style="font-size:15.875px;fill:#4cd137;fill-opacity:1"><tspan
          id="tspan59"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;-inkscape-font-specification:'Helvetica Neue, Helvetica, Arial, sans-serif'">Vyváženie článkov v ECO režime (1 blik = 50mV)</tspan></text><text
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.875px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;-inkscape-font-specification:'Helvetica Neue, Helvetica, Arial, sans-serif'">Vyváženie článkov<tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan3"> v </tspan>ECO režime <tspan
+   style="fill:#000000;fill-opacity:1"
+   id="tspan8">(1 blik = 50mV)</tspan></tspan></text><text
        x="336.16663"
        y="48"
        font-size="12px"
@@ -426,19 +434,19 @@
        font-weight="bold"
        fill="#00a8ff"
        id="text36"
-       style="font-size:15.875px;fill:#000000;fill-opacity:1">2 × MODRÁ</text><text
-       x="243.79173"
+       style="font-size:17.6389px;fill:#000000;fill-opacity:1">2 × MODRÁ</text><text
+       x="254.37508"
        y="26"
        font-size="12.5px"
        font-weight="bold"
        fill="#ffffff"
        id="text37"
-       style="font-size:15.875px;fill:#00a8ff;fill-opacity:1">➔ ŠTANDARDNÝ REŽIM <tspan
+       style="font-size:17.6389px;fill:#00a8ff;fill-opacity:1">➔ ŠTANDARDNÝ REŽIM <tspan
    fill="#aaaaaa"
    font-weight="normal"
    font-size="11.5px"
    id="tspan36"
-   style="font-size:15.875px;fill:#000000;fill-opacity:1">(4.15V max.)</tspan></text><!-- Eco Mode --><circle
+   style="font-size:17.6389px;fill:#000000;fill-opacity:1">(4.15V max.)</tspan></text><!-- Eco Mode --><circle
        cx="6.5"
        cy="41.768681"
        r="5.4545455"
@@ -472,19 +480,19 @@
        font-weight="bold"
        fill="#4cd137"
        id="text40"
-       style="font-size:15.875px;fill:#000000;fill-opacity:1">2 × ZELENÁ</text><text
-       x="243.79173"
+       style="font-size:17.6389px;fill:#000000;fill-opacity:1">2 × ZELENÁ</text><text
+       x="254.37508"
        y="48"
        font-size="12.5px"
        font-weight="bold"
        fill="#4cd137"
        id="text41"
-       style="font-size:15.875px">➔ ECO REŽIM <tspan
+       style="font-size:17.6389px">➔ ECO REŽIM <tspan
    fill="#aaaaaa"
    font-weight="normal"
    font-size="11.5px"
    id="tspan40"
-   style="font-size:15.875px;fill:#000000;fill-opacity:1">(4.00V max.)</tspan></text></g><style
+   style="font-size:17.6389px;fill:#000000;fill-opacity:1">(4.00V max.)</tspan></text></g><style
      type="text/css"
      id="style1">
 	.st0{fill:#231F20;}
