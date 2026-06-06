@@ -26,10 +26,10 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="3.3"
-     inkscape:cx="123.93939"
-     inkscape:cy="134.39394"
+     inkscape:cx="123.78788"
+     inkscape:cy="110.15152"
      inkscape:window-width="1920"
-     inkscape:window-height="1137"
+     inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -67,7 +67,7 @@
        fill="#00a8ff"
        letter-spacing="1.01695"
        id="text1"
-       style="font-size:21.1667px;fill:#000000;fill-opacity:1;stroke-width:1.01695">BATTERY BMS</text><line
+       style="font-size:21.1667px;fill:#000000;fill-opacity:1;stroke-width:1.01695">BATTERY BMS (STANDARD | ECO)</text><line
        x1="24.999998"
        y1="99.390846"
        x2="624.99994"
