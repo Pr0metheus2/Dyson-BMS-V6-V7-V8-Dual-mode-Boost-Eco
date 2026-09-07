@@ -64,6 +64,9 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 -	Dyson V8 - Model SV37 - PCB ? - Compatible + Tested by [twaymouth](https://github.com/tinfever/FW-Dyson-BMS/issues/80)
 <img src="./hardware-info/images/SV37/577002333-ed216a2c-ef40-4580-a824-d57f7bf8a40d.jpg" width="400" />
 
+- Dyson V8 - Model SV10 - PCB 180207 - Compatible + Tested by Сергей Ткаченко
+<img src="./hardware-info/images/V8 SV10 - PCB 180207.jpg" width="400" />
+
 Note: the model numbers are kind of weird. There are three different ways to identify/categorize your vacuum:
 1.  The advertised version number (V6, V7, etc)
 2.  The actual model number printed on the battery (SV04, SV09, SV11)
