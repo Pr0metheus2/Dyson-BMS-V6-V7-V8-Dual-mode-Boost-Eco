@@ -36,7 +36,7 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 
 
 ## 🔋 Battery sticker for V8
-- Accessible in [documents/Battery_sticker](https://github.com/Pr0metheus2/Dyson-BMS-V6-V7-V8-Dual-mode-Boost-Eco/tree/9d27dbbd231bbaf2f64f4269289b554ac80f5bac/documents/Battery_sticker) folder
+- Accessible in [documents/Battery_sticker](https://github.com/Pr0metheus2/Dyson-BMS-V6-V7-V8-Dual-mode-Boost-Eco/tree/main/documents/Battery_sticker) folder
 - For printing use a PDF version, do not scale
 - If you have swapped old cells for a higher capacity ones, edit appropriate .svg file, search for "2600 mAh" and change to your desired value. Then open in viewer, export to PDF and print
 <img src="./documents/Battery_sticker/Battery_sticker_64x64_SV10_en.svg" width="600" />
