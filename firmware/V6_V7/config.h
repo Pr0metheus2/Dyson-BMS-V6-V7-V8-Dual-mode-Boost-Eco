@@ -51,7 +51,7 @@ const uint8_t PACK_CHARGE_MAX_NUM_OF_CHARGE_WAIT_REPEATS = 20; //Limit the Numbe
 
 
 #define FIRMWARE_VERSION 3.6
-#define ASCII_FIRMWARE_VERSION 0x35;      //ASCII '5' = 0x35. This must be manually determined so the EEPROM section is human readable.
+#define ASCII_FIRMWARE_VERSION 0x36;      //ASCII '6' = 0x36. This must be manually determined so the EEPROM section is human readable.
 
 //Uncomment these lines while in debug mode to disable certain temperature checks for testing.
 //#ifdef __DEBUG  //Make sure these only work in debug mode
