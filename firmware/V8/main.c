@@ -52,7 +52,7 @@
 __EEPROM_DATA(0x54, 0x69, 0x6E, 0x66, 0x65, 0x76, 0x65, 0x72);              //"Tinfever"    EEPROM addresses 0x00 - 0x07
 __EEPROM_DATA(0x20, 0x46, 0x55, 0x2D, 0x44, 0x79, 0x73, 0x6F);              //" FU-Dyso"    EEPROM addresses 0x08 - 0x0F
 __EEPROM_DATA(0x6E, 0x2D, 0x42, 0x4D, 0x53, 0x20, 0x56, ASCII_FIRMWARE_VERSION);  //"n-BMS V{insert firmware version here}"     EEPROM addresses 0x10 - 0x17
-__EEPROM_DATA(0, EEPROM_START_OF_EVENT_LOGS_ADDR, 0, 0, 0, 0, 0, 0);                                     //Address of the next available space for recording error events       EEPROM addresses 0x18 - 0x1F
+__EEPROM_DATA(0, 0, 0, 0, 0, 0, 0, 0);                                                                    //Reserved EEPROM addresses 0x18 - 0x1F
 __EEPROM_DATA(0, 0, 0x2E, 0xE0, 0, 0, 0x2E, 0x2E);    // Space to store 32bit uOhm current internal resistence of min cell (0x20) [mincell_internal_resistence_last_charge_uOhms] and overall greatest current internal resistence of min cell (0x24) [mincell_internal_resistence_max], EEPROM addresses 0x20 - 0x27
 __EEPROM_DATA(0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 0, 0);    // Space to store 32bit, minimal mincell_voltage_mV_last_trigger (0x28) and minimal CellVoltages[minimum_cell_last_trigger] (0x2A) , EEPROM addresses 0x28 - 0x2F
 //                                    discharge current when overall maximal internal resistence was set (0x2C), thermistor temp max (0x2E) internal_ISL_temp max (0x2F))
@@ -662,8 +662,6 @@ void error(void){
         Write32BitUintVariableToEEPROM(EEPROM_RUNTIME_TOTAL_STARTING_ADDR, total_runtime_counter.value);
     }
     
-    static bool EEPROM_Event_Logged = false;
-
     current_error_reason = (error_reason_t){0};
     setErrorReasonFlags(&current_error_reason);
         
@@ -784,7 +782,6 @@ void error(void){
                 past_error_reason = (error_reason_t){0};    //Clear error reason value for future usage
                 current_error_reason = (error_reason_t){0};
                 resetLEDBlinkPattern();
-                EEPROM_Event_Logged = false;
                 full_discharge_flag = false;
                 state = IDLE;
                 return;

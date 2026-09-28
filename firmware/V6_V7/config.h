@@ -50,8 +50,8 @@ const uint8_t PACK_CHARGE_MAX_NUM_OF_CHARGE_WAIT_REPEATS = 20; //Limit the Numbe
 
 
 
-#define FIRMWARE_VERSION 3.6
-#define ASCII_FIRMWARE_VERSION 0x36;      //ASCII '6' = 0x36. This must be manually determined so the EEPROM section is human readable.
+#define FIRMWARE_VERSION 3.7
+#define ASCII_FIRMWARE_VERSION 0x37;      //ASCII '7' = 0x37. This must be manually determined so the EEPROM section is human readable.
 
 //Uncomment these lines while in debug mode to disable certain temperature checks for testing.
 //#ifdef __DEBUG  //Make sure these only work in debug mode
@@ -61,8 +61,6 @@ const uint8_t PACK_CHARGE_MAX_NUM_OF_CHARGE_WAIT_REPEATS = 20; //Limit the Numbe
 //#endif
 
 //EEPROM Formatting Parameters
-#define EEPROM_START_OF_EVENT_LOGS_ADDR 0x50
-#define EEPROM_NEXT_BYTE_AVAIL_STORAGE_ADDR 0x19
 #define EEPROM_RUNTIME_TOTAL_STARTING_ADDR 0x1C    //32-bit runtime counter to be held in 0x1C, 0x1D, 0x1E, 0x1F
 
 #define EEPROM_ADDR_MIN_CELL_IR_LAST            0x20
