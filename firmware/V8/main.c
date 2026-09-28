@@ -212,6 +212,13 @@ void init(void){
     }
     
     modelnum = checkModelNum();    
+
+    // Reject a PIC-only flash: the fixed EEPROM header must also have been programmed.
+    if (Read32BitUintVariableFromEEPROM(0x00) != 0x54696E66){ // "Tinf"
+        eeprom_header_error = true;
+        state = ERROR;
+        return;
+    }
     
     //Load 32-bit total runtime counter from EEPROM
     total_runtime_counter.value = Read32BitUintVariableFromEEPROM(EEPROM_RUNTIME_TOTAL_STARTING_ADDR);  
@@ -748,6 +755,7 @@ void error(void){
         && !current_error_reason.TEMP_HYSTERESIS 
         && ((detect == NONE) || detect == CHARGER)    //if the error reason was being fully discharged, allow exit loop if device is connected to charger
         && discharge_current_mA == 0
+        && !eeprom_header_error                  //Do not run with missing/unprogrammed EEPROM
             ){
             if (!LED_code_cycle_counter.enable){
                 LED_code_cycle_counter.value = 0;
