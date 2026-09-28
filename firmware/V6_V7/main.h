@@ -29,6 +29,8 @@ enum {
     ERROR,
 } state;
 
+bool eeprom_header_error = false;
+
 typedef enum{
     NONE = 0,       //0b00
     TRIGGER = 1,    //0b01
