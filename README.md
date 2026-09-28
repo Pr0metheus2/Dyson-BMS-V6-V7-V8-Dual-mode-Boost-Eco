@@ -221,6 +221,8 @@ If your battery isn’t turning on at all, do the following (do not leave unatte
     
 |Number of Red Flashes|Fault Name|Fault Meaning|Default Limit|
 |--|--|--|--|
+|1|EEPROM_HEADER_ERROR|The PIC program was flashed but the data EEPROM is missing or unprogrammed; the pack is locked until it is reflashed with data EEPROM enabled.|EEPROM bytes `0x00`-`0x03` must contain `Tinf`|
+|2|CRITICAL_MIN_CELL_VOLTAGE|At least one cell is below the critical cell-voltage threshold; output and charging are disabled.|2.0V per cell|
 |4|ISL_INT_OVERTEMP_FLAG|ISL94208 asserted flag that it reached the internal over-temperature limit|125C
 |5|ISL_EXT_OVERTEMP_FLAG|ISL94208 asserted flag that it measured the external thermistor to be above the over-temperature limit|Temp3V/13 = 3.3V/13 = 254mV = 74C on V7 battery
 |6|ISL_INT_OVERTEMP_PICREAD|PIC has read the internal temperature of the ISL94208 to be over the software over-temperature limit|60C

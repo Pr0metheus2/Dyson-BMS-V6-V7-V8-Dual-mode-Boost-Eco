@@ -847,7 +847,9 @@ void error(void){
         LED_code_cycle_counter.enable = false;
     }
 
-    if (past_error_reason.ISL_INT_OVERTEMP_FLAG) errorBlinkpattern (4);                     //ISL internal overtemp
+    if (eeprom_header_error) errorBlinkpattern (1);                                         //EEPROM was not programmed
+    else if (cellstats.mincell_mV < CRITICAL_MIN_CELL_VOLTAGE_mV) errorBlinkpattern (2);   //Critical low cell voltage
+    else if (past_error_reason.ISL_INT_OVERTEMP_FLAG) errorBlinkpattern (4);               //ISL internal overtemp
     else if (past_error_reason.ISL_EXT_OVERTEMP_FLAG) errorBlinkpattern (5);                //ISL external overtemp
     else if (past_error_reason.ISL_INT_OVERTEMP_PICREAD) errorBlinkpattern (6);             //ISL internal overtemp (PIC reading)
     else if (past_error_reason.THERMISTOR_OVERTEMP_PICREAD) errorBlinkpattern (7);          //Thermistor overtemp (PIC reading)
