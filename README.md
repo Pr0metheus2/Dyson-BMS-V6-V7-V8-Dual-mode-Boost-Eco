@@ -17,7 +17,7 @@ This is a fork of the [FW-Dyson-BMS](https://github.com/tinfever/FW-Dyson-BMS) a
 -	Determine and factor in internal resistance of the cells to better utilise high currents (momentary voltage is allowed to drop below 3V while discharged)
 -	Limit number of charge-wait-cycles (safety)
 -	Introduced slow (10s charge, 70s wait) charging for cell voltage below 3V
--	Refuse charging if one cell is below 2,0V (unsafe, will generate 20 blink error)
+-	Refuse charging if one cell is below 2,0V (unsafe, will generate 2 blink error)
 -	Breathing blue LED effect during charging
 -   Battery level indicator
 -   Improved/Slightly changed the cell balance indicator: 0mV – 50mV: 1 blink. 50mV – 100mV: 2 binks etc. This way you have one blink from the start. Not to have a blink and one appears later may be confusing.
