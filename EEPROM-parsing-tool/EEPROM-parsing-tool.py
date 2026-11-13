@@ -42,9 +42,20 @@ if falsecount == len(combined_list[1::2]):
     for i, item in enumerate(combined_list[1::2]):
         combined_list.pop(i+1)          #This is kind of weird but it works. Deletes all the odd items after confirming they are all zero
 
+if len(combined_list) < 32:
+    parser.error("EEPROM dump is incomplete; at least 32 bytes are required.")
+
 
 firmware_version_hex = ''.join(combined_list[:24]) 
 firmware_version = bytearray.fromhex(firmware_version_hex).decode()
+
+# New firmware images store a full version suffix (for example, ".7") at
+# EEPROM addresses 0x18-0x19. Older images do not contain this ".<digit>"
+# suffix and continue to decode as their original "... V7" identifier.
+firmware_version_suffix = bytearray.fromhex(''.join(combined_list[24:26]))
+if firmware_version_suffix[0] == ord('.') and chr(firmware_version_suffix[1]).isdigit():
+    firmware_version += firmware_version_suffix.decode()
+
 output_data = {}
 output_data["Firmware"] = firmware_version
 
