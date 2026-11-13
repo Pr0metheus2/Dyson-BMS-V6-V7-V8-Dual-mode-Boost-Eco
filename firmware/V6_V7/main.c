@@ -67,8 +67,8 @@ uint8_t CalculateChargeIndicator(void){
 //EEPROM Init during programming
 __EEPROM_DATA(0x54, 0x69, 0x6E, 0x66, 0x65, 0x76, 0x65, 0x72);              //"Tinfever"    EEPROM addresses 0x00 - 0x07
 __EEPROM_DATA(0x20, 0x46, 0x55, 0x2D, 0x44, 0x79, 0x73, 0x6F);              //" FU-Dyso"    EEPROM addresses 0x08 - 0x0F
-__EEPROM_DATA(0x6E, 0x2D, 0x42, 0x4D, 0x53, 0x20, 0x56, ASCII_FIRMWARE_VERSION);  //"n-BMS V{insert firmware version here}"     EEPROM addresses 0x10 - 0x17
-__EEPROM_DATA(0, 0, 0, 0, 0, 0, 0, 0);                                                                    //Reserved EEPROM addresses 0x18 - 0x1F
+__EEPROM_DATA(0x6E, 0x2D, 0x42, 0x4D, 0x53, 0x20, 0x76, EEPROM_FIRMWARE_VERSION_MAJOR_ASCII);  //"n-BMS v{major version}"  EEPROM addresses 0x10 - 0x17
+__EEPROM_DATA(0x2E, EEPROM_FIRMWARE_VERSION_MINOR_ASCII, 0, 0, 0, 0, 0, 0);                              //".{minor version}"        EEPROM addresses 0x18 - 0x19; 0x1A - 0x1F reserved
 __EEPROM_DATA(0, 0, 0x2E, 0xE0, 0, 0, 0x2E, 0x2E);    // Space to store 32bit uOhm current internal resistence of min cell (0x20) and overall greatest current internal resistence of min cell (0x24), EEPROM addresses 0x20 - 0x27
 __EEPROM_DATA(0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 0, 0);    // Space to store 32bit, minimal mincell_voltage_mV_last_trigger (0x28) and minimal CellVoltages[minimum_cell_last_trigger] (0x2A) , EEPROM addresses 0x28 - 0x2F
 //                                    discharge current when overall maximal internal resistence was set (0x2C), thermistor temp max (0x2E) internal_ISL_temp max (0x2F))
@@ -230,8 +230,11 @@ void init(void){
     
     modelnum = checkModelNum();    
 
-    // Reject a PIC-only flash: the fixed EEPROM header must also have been programmed.
-    if (Read32BitUintVariableFromEEPROM(0x00) != 0x54696E66){ // "Tinf"
+    // Reject a PIC-only or mismatched flash: the EEPROM header and version must match this firmware.
+    if (Read32BitUintVariableFromEEPROM(0x00) != 0x54696E66 || // "Tinf"
+        Read32BitUintVariableFromEEPROM(0x16) !=
+            ((uint32_t)0x76 << 24 | (uint32_t)EEPROM_FIRMWARE_VERSION_MAJOR_ASCII << 16 |
+             (uint32_t)0x2E << 8 | EEPROM_FIRMWARE_VERSION_MINOR_ASCII)){ // "v3.8"
         eeprom_header_error = true;
         state = ERROR;
         return;
@@ -484,7 +487,7 @@ void charging(void){
     
     mincell_voltage_mV_last_trigger = 0xFFFF; //to avoid wrong calculation of internal resistence (in case not going from discharge to void directly)
     
-    if (cellstats.mincell_mV < CRITICAL_MIN_CELL_VOLTAGE_mV){ // No Error handling implemented. Will result in 20 times blink pattern. Will need to disassamble pack and check the cells manually
+    if (cellstats.mincell_mV < CRITICAL_MIN_CELL_VOLTAGE_mV){ // Critical low cell voltage; error() displays two red flashes.
         state = ERROR;
         return;
     }

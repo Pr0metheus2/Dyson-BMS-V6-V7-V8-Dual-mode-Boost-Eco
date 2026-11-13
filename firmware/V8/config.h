@@ -50,8 +50,9 @@ const uint8_t PACK_CHARGE_MAX_NUM_OF_CHARGE_WAIT_REPEATS = 20; //Limit the Numbe
 
 
 
-#define FIRMWARE_VERSION 3.7
-#define ASCII_FIRMWARE_VERSION 0x37;      //ASCII '7' = 0x37. This must be manually determined so the EEPROM section is human readable.
+#define FIRMWARE_VERSION 3.8
+#define EEPROM_FIRMWARE_VERSION_MAJOR_ASCII 0x33  // ASCII '3'. Keep this synchronized with FIRMWARE_VERSION.
+#define EEPROM_FIRMWARE_VERSION_MINOR_ASCII 0x38  // ASCII '8'. Keep this synchronized with FIRMWARE_VERSION.
 
 //Uncomment these lines while in debug mode to disable certain temperature checks for testing.
 //#ifdef __DEBUG  //Make sure these only work in debug mode
@@ -61,8 +62,29 @@ const uint8_t PACK_CHARGE_MAX_NUM_OF_CHARGE_WAIT_REPEATS = 20; //Limit the Numbe
 //#endif
 
 //EEPROM Formatting Parameters
-const uint8_t EEPROM_RUNTIME_TOTAL_STARTING_ADDR = 0x1C;    //32-bit runtime counter to be held in 0x1C, 0x1D, 0x1E, 0x1F
-#define EEPROM_ADDR_MAX_CHARGE_VOLT	0x44
+#define EEPROM_RUNTIME_TOTAL_STARTING_ADDR       0x1C    // 32-bit runtime counter at 0x1C-0x1F
+#define EEPROM_ADDR_MIN_CELL_IR_LAST            0x20
+#define EEPROM_ADDR_MIN_CELL_IR_MAX             0x24
+#define EEPROM_ADDR_MIN_CELL_V_LAST_TRIG        0x28
+#define EEPROM_ADDR_MIN_CELL_V_LAST_TRIG_RECOV  0x2A
+#define EEPROM_ADDR_DISCHARGE_CURR_LAST_TRIG    0x2C
+#define EEPROM_ADDR_THERMISTOR_TEMP_MAX         0x2E
+#define EEPROM_ADDR_ISL_INT_TEMP_MAX            0x2F
+#define EEPROM_ADDR_PACK_DELTA_END_CHARGE       0x30
+#define EEPROM_ADDR_CELL_V1_SLEEP               0x38
+#define EEPROM_ADDR_CELL_V2_SLEEP               0x3A
+#define EEPROM_ADDR_CELL_V3_SLEEP               0x3C
+#define EEPROM_ADDR_CELL_V4_SLEEP               0x3E
+#define EEPROM_ADDR_CELL_V5_SLEEP               0x40
+#define EEPROM_ADDR_CELL_V6_SLEEP               0x42
+#define EEPROM_ADDR_MAX_CHARGE_VOLT             0x44
+#define EEPROM_ADDR_CELL_OFFSET_1               0x48
+#define EEPROM_ADDR_CELL_OFFSET_2               0x49
+#define EEPROM_ADDR_CELL_OFFSET_3               0x4A
+#define EEPROM_ADDR_CELL_OFFSET_4               0x4B
+#define EEPROM_ADDR_CELL_OFFSET_5               0x4C
+#define EEPROM_ADDR_CELL_OFFSET_6               0x4D
+#define EEPROM_ADDR_CHARGE_STATE_MEMORY         0x4E
 
 #define redLED PSTR1CONbits.STR1C
 #define greenLED PSTR1CONbits.STR1A

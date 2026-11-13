@@ -51,8 +51,8 @@
 //EEPROM Init during programming
 __EEPROM_DATA(0x54, 0x69, 0x6E, 0x66, 0x65, 0x76, 0x65, 0x72);              //"Tinfever"    EEPROM addresses 0x00 - 0x07
 __EEPROM_DATA(0x20, 0x46, 0x55, 0x2D, 0x44, 0x79, 0x73, 0x6F);              //" FU-Dyso"    EEPROM addresses 0x08 - 0x0F
-__EEPROM_DATA(0x6E, 0x2D, 0x42, 0x4D, 0x53, 0x20, 0x56, ASCII_FIRMWARE_VERSION);  //"n-BMS V{insert firmware version here}"     EEPROM addresses 0x10 - 0x17
-__EEPROM_DATA(0, 0, 0, 0, 0, 0, 0, 0);                                                                    //Reserved EEPROM addresses 0x18 - 0x1F
+__EEPROM_DATA(0x6E, 0x2D, 0x42, 0x4D, 0x53, 0x20, 0x76, EEPROM_FIRMWARE_VERSION_MAJOR_ASCII);  //"n-BMS v{major version}"  EEPROM addresses 0x10 - 0x17
+__EEPROM_DATA(0x2E, EEPROM_FIRMWARE_VERSION_MINOR_ASCII, 0, 0, 0, 0, 0, 0);                              //".{minor version}"        EEPROM addresses 0x18 - 0x19; 0x1A - 0x1F reserved
 __EEPROM_DATA(0, 0, 0x2E, 0xE0, 0, 0, 0x2E, 0x2E);    // Space to store 32bit uOhm current internal resistence of min cell (0x20) [mincell_internal_resistence_last_charge_uOhms] and overall greatest current internal resistence of min cell (0x24) [mincell_internal_resistence_max], EEPROM addresses 0x20 - 0x27
 __EEPROM_DATA(0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 0, 0);    // Space to store 32bit, minimal mincell_voltage_mV_last_trigger (0x28) and minimal CellVoltages[minimum_cell_last_trigger] (0x2A) , EEPROM addresses 0x28 - 0x2F
 //                                    discharge current when overall maximal internal resistence was set (0x2C), thermistor temp max (0x2E) internal_ISL_temp max (0x2F))
@@ -213,8 +213,11 @@ void init(void){
     
     modelnum = checkModelNum();    
 
-    // Reject a PIC-only flash: the fixed EEPROM header must also have been programmed.
-    if (Read32BitUintVariableFromEEPROM(0x00) != 0x54696E66){ // "Tinf"
+    // Reject a PIC-only or mismatched flash: the EEPROM header and version must match this firmware.
+    if (Read32BitUintVariableFromEEPROM(0x00) != 0x54696E66 || // "Tinf"
+        Read32BitUintVariableFromEEPROM(0x16) !=
+            ((uint32_t)0x76 << 24 | (uint32_t)EEPROM_FIRMWARE_VERSION_MAJOR_ASCII << 16 |
+             (uint32_t)0x2E << 8 | EEPROM_FIRMWARE_VERSION_MINOR_ASCII)){ // "v3.8"
         eeprom_header_error = true;
         state = ERROR;
         return;
@@ -222,18 +225,18 @@ void init(void){
     
     //Load 32-bit total runtime counter from EEPROM
     total_runtime_counter.value = Read32BitUintVariableFromEEPROM(EEPROM_RUNTIME_TOTAL_STARTING_ADDR);  
-    mincell_internal_resistence_last_charge_uOhms = Read32BitUintVariableFromEEPROM(0x20);
-    packdelta_end_of_charging_wait_mV = Read16BitUintVariableFromEEPROM(0x30);
-    mincell_internal_resistence_max = Read32BitUintVariableFromEEPROM(0x24);
-    thermistor_temp_max = DATAEE_ReadByte(0x2E);
-    isl_int_temp_max = (uint16_t) DATAEE_ReadByte(0x2F);
-    cell_offset_voltage_1 = (int8_t) DATAEE_ReadByte(0x48);
-    cell_offset_voltage_2 = (int8_t) DATAEE_ReadByte(0x49);
-    cell_offset_voltage_3 = (int8_t) DATAEE_ReadByte(0x4A);
-    cell_offset_voltage_4 = (int8_t) DATAEE_ReadByte(0x4B);
-    cell_offset_voltage_5 = (int8_t) DATAEE_ReadByte(0x4C);
-    cell_offset_voltage_6 = (int8_t) DATAEE_ReadByte(0x4D);
-    charge_state_memory = (int8_t) DATAEE_ReadByte(0x4E);
+    mincell_internal_resistence_last_charge_uOhms = Read32BitUintVariableFromEEPROM(EEPROM_ADDR_MIN_CELL_IR_LAST);
+    packdelta_end_of_charging_wait_mV = Read16BitUintVariableFromEEPROM(EEPROM_ADDR_PACK_DELTA_END_CHARGE);
+    mincell_internal_resistence_max = Read32BitUintVariableFromEEPROM(EEPROM_ADDR_MIN_CELL_IR_MAX);
+    thermistor_temp_max = DATAEE_ReadByte(EEPROM_ADDR_THERMISTOR_TEMP_MAX);
+    isl_int_temp_max = (uint16_t) DATAEE_ReadByte(EEPROM_ADDR_ISL_INT_TEMP_MAX);
+    cell_offset_voltage_1 = (int8_t) DATAEE_ReadByte(EEPROM_ADDR_CELL_OFFSET_1);
+    cell_offset_voltage_2 = (int8_t) DATAEE_ReadByte(EEPROM_ADDR_CELL_OFFSET_2);
+    cell_offset_voltage_3 = (int8_t) DATAEE_ReadByte(EEPROM_ADDR_CELL_OFFSET_3);
+    cell_offset_voltage_4 = (int8_t) DATAEE_ReadByte(EEPROM_ADDR_CELL_OFFSET_4);
+    cell_offset_voltage_5 = (int8_t) DATAEE_ReadByte(EEPROM_ADDR_CELL_OFFSET_5);
+    cell_offset_voltage_6 = (int8_t) DATAEE_ReadByte(EEPROM_ADDR_CELL_OFFSET_6);
+    charge_state_memory = (int8_t) DATAEE_ReadByte(EEPROM_ADDR_CHARGE_STATE_MEMORY);
     //Load MAX_CHARGE_CELL_VOLTAGE_mV from EEPROM
     MAX_CHARGE_CELL_VOLTAGE_mV = Read16BitUintVariableFromEEPROM(EEPROM_ADDR_MAX_CHARGE_VOLT);
     // Default to Boost mode if EEPROM is uninitialized or value is invalid
@@ -270,31 +273,31 @@ void sleep_ISL_or_PIC(void){
     }
     else {
         //going to fully sleep. ISL will turn of PIC by cutting power. write some EEPROM Data first:
-        Write32BitUintVariableToEEPROM(0x20, mincell_internal_resistence_last_charge_uOhms);
-        if (mincell_internal_resistence_max > Read32BitUintVariableFromEEPROM(0x24)){
-            Write32BitUintVariableToEEPROM(0x24, mincell_internal_resistence_max);
-            Write16BitUintVariableToEEPROM(0x28, mincell_voltage_mV_last_trigger_eeprom);
-            Write16BitUintVariableToEEPROM(0x2A, mincell_voltage_mV_last_trigger_recover_eeprom);
-            Write16BitUintVariableToEEPROM(0x2C, discharge_current_mA_last_trigger_eeprom);
+        Write32BitUintVariableToEEPROM(EEPROM_ADDR_MIN_CELL_IR_LAST, mincell_internal_resistence_last_charge_uOhms);
+        if (mincell_internal_resistence_max > Read32BitUintVariableFromEEPROM(EEPROM_ADDR_MIN_CELL_IR_MAX)){
+            Write32BitUintVariableToEEPROM(EEPROM_ADDR_MIN_CELL_IR_MAX, mincell_internal_resistence_max);
+            Write16BitUintVariableToEEPROM(EEPROM_ADDR_MIN_CELL_V_LAST_TRIG, mincell_voltage_mV_last_trigger_eeprom);
+            Write16BitUintVariableToEEPROM(EEPROM_ADDR_MIN_CELL_V_LAST_TRIG_RECOV, mincell_voltage_mV_last_trigger_recover_eeprom);
+            Write16BitUintVariableToEEPROM(EEPROM_ADDR_DISCHARGE_CURR_LAST_TRIG, discharge_current_mA_last_trigger_eeprom);
         }
-        if (thermistor_temp_max > DATAEE_ReadByte(0x2E)){
-            DATAEE_WriteByte(0x2E, thermistor_temp_max);
+        if (thermistor_temp_max > DATAEE_ReadByte(EEPROM_ADDR_THERMISTOR_TEMP_MAX)){
+            DATAEE_WriteByte(EEPROM_ADDR_THERMISTOR_TEMP_MAX, thermistor_temp_max);
         }
-        if ((uint8_t) isl_int_temp_max > DATAEE_ReadByte(0x2F)){
-            DATAEE_WriteByte(0x2F, (uint8_t) isl_int_temp_max);
+        if ((uint8_t) isl_int_temp_max > DATAEE_ReadByte(EEPROM_ADDR_ISL_INT_TEMP_MAX)){
+            DATAEE_WriteByte(EEPROM_ADDR_ISL_INT_TEMP_MAX, (uint8_t) isl_int_temp_max);
         }     
-        Write16BitUintVariableToEEPROM(0x30, packdelta_end_of_charging_wait_mV);
+        Write16BitUintVariableToEEPROM(EEPROM_ADDR_PACK_DELTA_END_CHARGE, packdelta_end_of_charging_wait_mV);
         
         //Write current cell voltages (including applied offsets) to be compared with multimeter readings
-        Write16BitUintVariableToEEPROM(0x38, CellVoltages[1]);
-        Write16BitUintVariableToEEPROM(0x3A, CellVoltages[2]);
-        Write16BitUintVariableToEEPROM(0x3C, CellVoltages[3]);
-        Write16BitUintVariableToEEPROM(0x3E, CellVoltages[4]);
-        Write16BitUintVariableToEEPROM(0x40, CellVoltages[5]);
-        Write16BitUintVariableToEEPROM(0x42, CellVoltages[6]);
+        Write16BitUintVariableToEEPROM(EEPROM_ADDR_CELL_V1_SLEEP, CellVoltages[1]);
+        Write16BitUintVariableToEEPROM(EEPROM_ADDR_CELL_V2_SLEEP, CellVoltages[2]);
+        Write16BitUintVariableToEEPROM(EEPROM_ADDR_CELL_V3_SLEEP, CellVoltages[3]);
+        Write16BitUintVariableToEEPROM(EEPROM_ADDR_CELL_V4_SLEEP, CellVoltages[4]);
+        Write16BitUintVariableToEEPROM(EEPROM_ADDR_CELL_V5_SLEEP, CellVoltages[5]);
+        Write16BitUintVariableToEEPROM(EEPROM_ADDR_CELL_V6_SLEEP, CellVoltages[6]);
         
         //Write current charge_state_memory to EEPROM
-        DATAEE_WriteByte(0x4E, charge_state_memory);
+        DATAEE_WriteByte(EEPROM_ADDR_CHARGE_STATE_MEMORY, charge_state_memory);
         
         //Write latest runtime counter value to EEPROM
         Write32BitUintVariableToEEPROM(EEPROM_RUNTIME_TOTAL_STARTING_ADDR, total_runtime_counter.value);
@@ -460,7 +463,7 @@ void charging(void){
     
     mincell_voltage_mV_last_trigger = 0xFFFF; //to avoid wrong calculation of internal resistence (in case not going from discharge to void directly)
     
-    if (cellstats.mincell_mV < CRITICAL_MIN_CELL_VOLTAGE_mV){ // No Error handling implemented. Will result in 20 times blink pattern. Will need to disassamble pack and check the cells manually
+    if (cellstats.mincell_mV < CRITICAL_MIN_CELL_VOLTAGE_mV){ // Critical low cell voltage; error() displays two red flashes.
         state = ERROR;
         return;
     }

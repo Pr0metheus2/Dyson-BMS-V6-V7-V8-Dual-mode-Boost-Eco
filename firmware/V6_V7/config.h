@@ -50,8 +50,9 @@ const uint8_t PACK_CHARGE_MAX_NUM_OF_CHARGE_WAIT_REPEATS = 20; //Limit the Numbe
 
 
 
-#define FIRMWARE_VERSION 3.7
-#define ASCII_FIRMWARE_VERSION 0x37;      //ASCII '7' = 0x37. This must be manually determined so the EEPROM section is human readable.
+#define FIRMWARE_VERSION 3.8
+#define EEPROM_FIRMWARE_VERSION_MAJOR_ASCII 0x33  // ASCII '3'. Keep this synchronized with FIRMWARE_VERSION.
+#define EEPROM_FIRMWARE_VERSION_MINOR_ASCII 0x38  // ASCII '8'. Keep this synchronized with FIRMWARE_VERSION.
 
 //Uncomment these lines while in debug mode to disable certain temperature checks for testing.
 //#ifdef __DEBUG  //Make sure these only work in debug mode
