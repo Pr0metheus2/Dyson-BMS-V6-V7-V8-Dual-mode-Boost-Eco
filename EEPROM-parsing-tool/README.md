@@ -1,33 +1,28 @@
 # EEPROM-parsing-tool.py
 
-EEPROM-parsing-tool.py is a Python script that will convert the EEPROM logged data from the FW-Dyson-BMS firmware into something human readable.
+EEPROM-parsing-tool.py converts EEPROM diagnostic data from the FW-Dyson-BMS firmware into a human-readable JSON file. It reads the current EEPROM layout: firmware version, total runtime, cell-resistance records, trigger measurements, maximum temperatures, saved cell voltages, charge-voltage setting, and cell-voltage offsets.
 
 usage: EEPROM-parsing-tool.py file_path
 
-example:
+For example, parsing `v6.txt` writes `v6_output.txt` in the same directory. The console only displays the output-file path.
 
-    >EEPROM-parsing-tool.py example-eeprom-dump.txt
+Example output:
+
+```json
     {
-        "Firmware": "Tinfever FU_Dyson_BMS V1",
-        "Total_Runtime_Seconds": 388.096,
-        "Faults": [
-            {
-                "index": 0,
-                "error_meaning": [
-                    "DISCHARGE_OC_SHUNT_PICREAD"
-                ],
-                "detect_mode": "Trigger",
-                "timestamp": 53.728
-            },
-            {
-                "index": 1,
-                "error_meaning": [
-                    "CHARGE_OC_FLAG"
-                ],
-                "detect_mode": "Charger",
-                "timestamp": 64.608
-            },
-    ...
+        "Firmware": "Tinfever FU-Dyson-BMS v3.8",
+        "Total_Runtime_Seconds": 19.872,
+        "Min_Cell_Resistance_uOhm": {
+            "Last_Charge": 12000,
+            "Maximum_Recorded": 11822
+        },
+        "Cell_Voltages_Last_Sleep_mV": {
+            "Cell_1": 4056
+        }
+    }
+```
+
+Fault logging is no longer stored in EEPROM, so the tool does not report a `Faults` section.
 
 You can use either the PICKit 3 Standalone Programmer App, or you can use MPLABX to read the EEPROM data.
 
