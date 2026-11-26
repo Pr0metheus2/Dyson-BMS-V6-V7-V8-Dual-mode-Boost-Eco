@@ -1,6 +1,5 @@
-import csv, json
+import json
 import argparse
-from math import comb
 from pathlib import Path
 from textwrap import wrap
 
@@ -45,6 +44,31 @@ if falsecount == len(combined_list[1::2]):
 if len(combined_list) < 32:
     parser.error("EEPROM dump is incomplete; at least 32 bytes are required.")
 
+eeprom = [int(value, 16) for value in combined_list]
+
+
+def read_u8(address):
+    return eeprom[address]
+
+
+def read_i8(address):
+    value = read_u8(address)
+    return value - 0x100 if value >= 0x80 else value
+
+
+def read_u16(address):
+    return (read_u8(address) << 8) | read_u8(address + 1)
+
+
+def read_u32(address):
+    return ((read_u8(address) << 24) | (read_u8(address + 1) << 16) |
+            (read_u8(address + 2) << 8) | read_u8(address + 3))
+
+
+def read_u16_or_none(address):
+    value = read_u16(address)
+    return None if value == 0xFFFF else value
+
 
 firmware_version_hex = ''.join(combined_list[:24]) 
 firmware_version = bytearray.fromhex(firmware_version_hex).decode()
@@ -59,78 +83,36 @@ if firmware_version_suffix[0] == ord('.') and chr(firmware_version_suffix[1]).is
 output_data = {}
 output_data["Firmware"] = firmware_version
 
-total_runtime_hex = ''.join(combined_list[28:32]) 
-total_runtime_seconds = round(int(total_runtime_hex, 16)* .032, 3)  #32ms per tick
-output_data["Total_Runtime_Seconds"] = total_runtime_seconds
-
-combined_list = combined_list[32:]
-
-fault_list = []
-for i in range(len(combined_list)//6):
-    timestamp_ticks = ''.join(combined_list[2:6]) 
-    timestamp_seconds = round(int(timestamp_ticks, 16)* .032, 3)  #32ms per tick
-
-    error_code_hex = ''.join(combined_list[:2]),
-    error_code_hex = error_code_hex[0]
-    error_code_binary = str(bin(int(error_code_hex, 16)))[2:].zfill(16)
-    error_bits = list(error_code_binary)
-
-    error_meaning = []
-    if error_bits[0] == "1":
-        error_meaning.append("ISL_INT_OVERTEMP_FLAG")
-    if error_bits[1] == "1":
-        error_meaning.append("ISL_EXT_OVERTEMP_FLAG")
-    if error_bits[2] == "1":
-        error_meaning.append("ISL_INT_OVERTEMP_PICREAD")
-    if error_bits[3] == "1":
-        error_meaning.append("THERMISTOR_OVERTEMP_PICREAD")
-    if error_bits[4] == "1":
-        error_meaning.append("UNDERTEMP_FLAG")
-    if error_bits[5] == "1":
-        error_meaning.append("CHARGE_OC_FLAG")
-    if error_bits[6] == "1":
-        error_meaning.append("DISCHARGE_OC_FLAG")
-    if error_bits[7] == "1":
-        error_meaning.append("DISCHARGE_SC_FLAG")
-
-    if error_bits[8] == "1":
-        error_meaning.append("DISCHARGE_OC_SHUNT_PICREAD")
-    if error_bits[9] == "1":
-        error_meaning.append("CHARGE_ISL_INT_OVERTEMP_PICREAD")
-    if error_bits[10] == "1":
-        error_meaning.append("CHARGE_THERMISTOR_OVERTEMP_PICREAD")
-    if error_bits[11] == "1":
-        error_meaning.append("TEMP_HYSTERESIS")
-    if error_bits[12] == "1":
-        error_meaning.append("ISL_BROWN_OUT")
-    if error_bits[13] == "1":
-        error_meaning.append("CRITICAL_I2C_ERROR")
-
-    detect_mode = (''.join(error_bits[14:])),
-    detect_mode = int(detect_mode[0], 2)
-    if detect_mode == 0:
-        detect_mode_text = "None"
-    elif detect_mode == 1:
-        detect_mode_text = "Trigger"
-    elif detect_mode == 2:
-        detect_mode_text = "Charger"
-    else:
-        detect_mode_text = ""
-
-
-    error_dict = {
-        "index": i,
-        #"error_code": error_code_hex,
-        "error_meaning": error_meaning,
-        "detect_mode": detect_mode_text,
-        "timestamp": timestamp_seconds
-    }
-    combined_list = combined_list[6:]
-    if timestamp_ticks != "FFFFFFFF":
-        fault_list.append(error_dict)
-
-
-output_data["Faults"] = fault_list
+output_data["Total_Runtime_Seconds"] = round(read_u32(0x1C) * 0.032, 3)  # 32 ms per tick
+output_data["Min_Cell_Resistance_uOhm"] = {
+    "Last_Charge": read_u32(0x20),
+    "Maximum_Recorded": read_u32(0x24)
+}
+minimum_cell_voltage_last_trigger = read_u16_or_none(0x28)
+recovered_cell_voltage_last_trigger = read_u16_or_none(0x2A)
+output_data["Trigger_At_Maximum_Resistance"] = {
+    "Minimum_Cell_Voltage_mV": minimum_cell_voltage_last_trigger,
+    "Recovered_Cell_Voltage_mV": recovered_cell_voltage_last_trigger,
+    "Discharge_Current_mA": (
+        read_u16(0x2C)
+        if minimum_cell_voltage_last_trigger is not None
+        else None
+    )
+}
+output_data["Maximum_Temperatures_C"] = {
+    "Thermistor": read_u8(0x2E),
+    "ISL94208_Internal": read_u8(0x2F)
+}
+output_data["Pack_Delta_End_Charge_mV"] = read_u16(0x30)
+output_data["Cell_Voltages_Last_Sleep_mV"] = {
+    f"Cell_{cell}": read_u16(0x38 + (cell - 1) * 2)
+    for cell in range(1, 7)
+}
+output_data["Maximum_Charge_Cell_Voltage_mV"] = read_u16(0x44)
+output_data["Cell_Voltage_Offsets_mV"] = {
+    f"Cell_{cell}": read_i8(0x48 + cell - 1)
+    for cell in range(1, 7)
+}
 
 output_path = filepath.with_name(f"{filepath.stem}_output{filepath.suffix}")
 with output_path.open("w", encoding="utf-8") as output_file:

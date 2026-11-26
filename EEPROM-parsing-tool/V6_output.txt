@@ -1,0 +1,35 @@
+{
+    "Firmware": "Tinfever FU-Dyson-BMS v3.8",
+    "Total_Runtime_Seconds": 19.872,
+    "Min_Cell_Resistance_uOhm": {
+        "Last_Charge": 12000,
+        "Maximum_Recorded": 11822
+    },
+    "Trigger_At_Maximum_Resistance": {
+        "Minimum_Cell_Voltage_mV": null,
+        "Recovered_Cell_Voltage_mV": null,
+        "Discharge_Current_mA": null
+    },
+    "Maximum_Temperatures_C": {
+        "Thermistor": 21,
+        "ISL94208_Internal": 23
+    },
+    "Pack_Delta_End_Charge_mV": 0,
+    "Cell_Voltages_Last_Sleep_mV": {
+        "Cell_1": 4056,
+        "Cell_2": 4050,
+        "Cell_3": 4035,
+        "Cell_4": 4059,
+        "Cell_5": 4042,
+        "Cell_6": 4055
+    },
+    "Maximum_Charge_Cell_Voltage_mV": 4150,
+    "Cell_Voltage_Offsets_mV": {
+        "Cell_1": 30,
+        "Cell_2": 30,
+        "Cell_3": 30,
+        "Cell_4": 30,
+        "Cell_5": 30,
+        "Cell_6": 30
+    }
+}
