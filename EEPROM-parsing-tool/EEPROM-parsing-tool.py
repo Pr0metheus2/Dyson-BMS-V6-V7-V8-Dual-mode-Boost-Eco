@@ -132,6 +132,11 @@ for i in range(len(combined_list)//6):
 
 output_data["Faults"] = fault_list
 
-print(json.dumps(output_data, indent=4))
+output_path = filepath.with_name(f"{filepath.stem}_output{filepath.suffix}")
+with output_path.open("w", encoding="utf-8") as output_file:
+    json.dump(output_data, output_file, indent=4)
+    output_file.write("\n")
+
+print(f"Output saved to: {output_path}")
 
 programPause = input('Press <ENTER> to continue')
